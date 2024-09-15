@@ -1,0 +1,12 @@
+.DS_Store
+.tscache/
+dist/
+node_modules/
+package-lock.json
+libs.code-workspace
+
+lib*/
+microservices*/
+iot*/
+laniakea*/
+documentation/
