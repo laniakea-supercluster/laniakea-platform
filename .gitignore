@@ -5,8 +5,14 @@ node_modules/
 package-lock.json
 libs.code-workspace
 
-lib*/
+app*/
+frontend*/
+libs*/
 microservices*/
 iot*/
 laniakea*/
 documentation/
+
+.nx/installation
+.nx/cache
+.nx/workspace-data

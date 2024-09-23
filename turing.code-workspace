@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "laniakea-mcs-template",
+			"path": "../github-templates/laniakea-mcs-template"
+		},
+		{
+			"name": "laniakea-terraform-k8s",
+			"path": "../laniakea-terraform-k8s"
+		}
+	],
+	"settings": {
+		"CodeGPT.apiKey": "CodeGPT Plus Beta"
+	}
+}
