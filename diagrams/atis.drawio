@@ -1,0 +1,30 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="24.7.7" pages="2">
+  <diagram name="Page-1" id="1FKQTQrvtBzEU-585MXQ">
+    <mxGraphModel dx="2106" dy="1264" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="RszxS9pYelLiebjGAn8j-1" value="Laniakea" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;size=50;fillColor=none;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="457" y="295" width="217.2" height="181" as="geometry" />
+        </mxCell>
+        <mxCell id="RszxS9pYelLiebjGAn8j-2" value="tursitus" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;size=50;fillColor=none;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="629" y="203" width="217.2" height="181" as="geometry" />
+        </mxCell>
+        <mxCell id="RszxS9pYelLiebjGAn8j-3" value="reclamos" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;size=50;fillColor=none;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="287" y="200" width="217.2" height="181" as="geometry" />
+        </mxCell>
+        <mxCell id="RszxS9pYelLiebjGAn8j-4" value="IoT" style="shape=hexagon;perimeter=hexagonPerimeter2;whiteSpace=wrap;html=1;fixedSize=1;size=50;fillColor=none;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="629" y="387" width="217.2" height="181" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="dUsGqIH9fw8Y7XOm89oL" name="Page-2">
+    <mxGraphModel dx="2106" dy="1264" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

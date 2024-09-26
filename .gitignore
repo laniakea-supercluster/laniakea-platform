@@ -5,13 +5,15 @@ node_modules/
 package-lock.json
 libs.code-workspace
 
-app*/
-frontend*/
-libs*/
-microservices*/
-iot*/
-laniakea*/
+app/
 documentation/
+frontend/
+laniakea/
+libs/
+microservices/
+iot/
+template/
+terraform/
 
 .nx/installation
 .nx/cache
