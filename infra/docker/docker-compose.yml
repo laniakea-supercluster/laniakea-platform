@@ -1,8 +1,35 @@
 services:
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # LOCAL DEVELOPMENT PORPUSE ONLY
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # Nginx Reverse Proxy
+  reverse-proxy:
+    container_name: laniakea-reverse-proxy
+    image: nginx:alpine
+    ports:
+      - "31000:31000"  # Map port 31000
+    volumes:
+      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./reverse-proxy/error502.html:/usr/share/nginx/html/error502.html:ro  # Mount the custom 502 error page
+      - ./reverse-proxy/error503.html:/usr/share/nginx/html/error503.html:ro  # Mount the custom 503 error page
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 60s
+      start_period: 10s
+      timeout: 5s
+      retries: 3
+
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # Databases
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # PostgreSql
-  laniakea-db:
+  laniakea-postgres:
+    container_name: laniakea-postgres
     image: postgres:14.13-alpine3.20
-    container_name: laniakea-db
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./database/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
@@ -19,15 +46,15 @@ services:
 
   # MongoDB
   laniakea-mongodb:
-    image: mongo:7.0.12
     container_name: laniakea-mongodb
+    image: mongo:7.0.12
     volumes:
       - mongo-data:/data/db
-      # -./database/mongodb/init.js:/docker-entrypoint-initdb.d/init-mongo-db-with-collections.js:ro
+      - ./database/mongodb/init.js:/docker-entrypoint-initdb.d/init-mongo-db-with-collections.js:ro
+      # - ./logs:/logs  # Mount logs folder to the host for easy access
     environment:
       - MONGO_INITDB_ROOT_USERNAME=local
       - MONGO_INITDB_ROOT_PASSWORD=local
-      - MONGO_INITDB_DATABASE=laniakeatestdb
     ports:
       - "27017:27017"
     command: --quiet
@@ -35,13 +62,42 @@ services:
       restart_policy:
         condition: on-failure
         max_attempts: 5
-
-
-
-
+    healthcheck:
+      test: ["CMD-SHELL", "mongosh --host localhost --quiet --eval \"db.adminCommand('ping').ok\""]
+      # test: ["CMD-SHELL", "mongosh --host localhost --quiet --eval \"db.adminCommand('ping').ok\" > /logs/healthcheck.log 2>&1"]
+      interval: 60s
+      start_period: 10s
+      timeout: 5s
+      retries: 5
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # Laniakea Microservices
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  laniakea-mcs-auth:
+    container_name: laniakea-mcs-auth
+    build:
+      context: ../../microservices/laniakea-mcs-auth
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - port=3000
+    env_file:
+      - ../docker.env
+    depends_on:
+      reverse-proxy:
+        condition: service_healthy
+      laniakea-mongodb:
+        condition: service_healthy
+
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  #
+  #
+  #
   # Cloud Stacks
+  #
+  #
+  #
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Google Cloud - Datastore
   laniakea-gcp-datastore:
@@ -58,19 +114,6 @@ services:
     command: gcloud beta emulators datastore start --project=datastore-wrapper --host-port=0.0.0.0:8081 --project emulator --store-on-disk
     # --no-store-on-disk --use-firestore-in-datastore-mode
 
-  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  # LOCAL DEVELOPMENT PORPUSE ONLY
-  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  # Nginx Reverse Proxy for local tests
-  reverse-proxy:
-    image: nginx:alpine
-    ports:
-      - "31000:31000"  # Map port 31000
-    volumes:
-      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./reverse-proxy/error502.html:/usr/share/nginx/html/error502.html:ro  # Mount the custom 502 error page
-      - ./reverse-proxy/error503.html:/usr/share/nginx/html/error503.html:ro  # Mount the custom 503 error page      
-
 volumes:
   postgres-data:
     name: laniakea-postgres-data
@@ -80,5 +123,3 @@ volumes:
 networks:
   default:
     name: laniakea-network
-
-    

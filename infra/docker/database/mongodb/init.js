@@ -1,3 +1,5 @@
+const db = db.getSiblingDB('region');
+db.createCollection('countries'); 
 db.countries.insertMany([
     {
         "code": 55,
