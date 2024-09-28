@@ -98,7 +98,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="FkEDhKjA1_ZWlDs_zAjh-5" value="Omnira Platform" style="swimlane;startSize=20;html=1;" parent="FkEDhKjA1_ZWlDs_zAjh-2" vertex="1">
+        <mxCell id="FkEDhKjA1_ZWlDs_zAjh-5" value="Platform" style="swimlane;startSize=20;html=1;" parent="FkEDhKjA1_ZWlDs_zAjh-2" vertex="1">
           <mxGeometry x="830" y="20" width="730" height="750" as="geometry" />
         </mxCell>
         <mxCell id="FkEDhKjA1_ZWlDs_zAjh-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" parent="FkEDhKjA1_ZWlDs_zAjh-5" source="FkEDhKjA1_ZWlDs_zAjh-9" target="FkEDhKjA1_ZWlDs_zAjh-48" edge="1">

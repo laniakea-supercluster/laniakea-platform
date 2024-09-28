@@ -8,3 +8,16 @@ docker-compose up -d --build servicea serviceb
 docker-compose up -d --build --no-cache servicea serviceb
 
 docker compose restart servicea
+
+
+
+docker-compose up -d --build laniakea-mcs-auth
+
+
+find . -name '._*' -delete
+
+
+
+# CHECKLIS - MICROSERVICES
+1. app.module
+  1.1 Include imports

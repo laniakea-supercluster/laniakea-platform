@@ -70,6 +70,16 @@ services:
       timeout: 5s
       retries: 5
 
+  # Prometheus
+  laniakea-prometheus:
+    image: prom/prometheus:latest
+    container_name: laniakea-prometheus
+    volumes:
+      - ./database/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Laniakea Microservices
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -119,7 +129,11 @@ volumes:
     name: laniakea-postgres-data
   mongo-data:
     name: laniakea-mongodb-data
+  prometheus_data:
+    driver: local
 
 networks:
   default:
     name: laniakea-network
+  # external_dev_network:
+  #   external: true
