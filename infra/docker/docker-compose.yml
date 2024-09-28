@@ -1,29 +1,5 @@
 services:
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  # LOCAL DEVELOPMENT PORPUSE ONLY
-  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  # Nginx Reverse Proxy
-  reverse-proxy:
-    container_name: laniakea-reverse-proxy
-    image: nginx:alpine
-    ports:
-      - "31000:31000"  # Map port 31000
-    volumes:
-      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./reverse-proxy/error502.html:/usr/share/nginx/html/error502.html:ro  # Mount the custom 502 error page
-      - ./reverse-proxy/error503.html:/usr/share/nginx/html/error503.html:ro  # Mount the custom 503 error page
-    deploy:
-      restart_policy:
-        condition: on-failure
-        max_attempts: 5
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/health"]
-      interval: 60s
-      start_period: 10s
-      timeout: 5s
-      retries: 3
-
-  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Databases
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # PostgreSql
@@ -101,13 +77,7 @@ services:
         condition: service_healthy
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  #
-  #
-  #
   # Cloud Stacks
-  #
-  #
-  #
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Google Cloud - Datastore
   laniakea-gcp-datastore:
@@ -123,6 +93,33 @@ services:
       - "8000:8081"
     command: gcloud beta emulators datastore start --project=datastore-wrapper --host-port=0.0.0.0:8081 --project emulator --store-on-disk
     # --no-store-on-disk --use-firestore-in-datastore-mode
+
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # LOCAL DEVELOPMENT PURPOSE ONLY
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # Nginx Reverse Proxy
+  reverse-proxy:
+    container_name: laniakea-reverse-proxy
+    image: nginx:alpine
+    ports:
+      - "31000:31000"  # Map port 31000
+    volumes:
+      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./reverse-proxy/error502.html:/usr/share/nginx/html/error502.html:ro  # Mount the custom 502 error page
+      - ./reverse-proxy/error503.html:/usr/share/nginx/html/error503.html:ro  # Mount the custom 503 error page
+    deploy:
+      restart_policy:
+        condition: on-failure
+        max_attempts: 5
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 60s
+      start_period: 10s
+      timeout: 5s
+      retries: 3
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # LOCAL DEVELOPMENT PURPOSE ONLY
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 volumes:
   postgres-data:
