@@ -46,15 +46,71 @@ services:
       timeout: 5s
       retries: 5
 
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # Queue
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  laniakea-rabbitmq:
+    image: rabbitmq:3-management
+    container_name: laniakea-rabbitmq
+    ports:
+      - "5672:5672"     # AMQP port for RabbitMQ client communication
+      - "15672:15672"   # Web management console port
+    environment:
+      RABBITMQ_DEFAULT_USER: admin    # Default username for the web console
+      RABBITMQ_DEFAULT_PASS: admin    # Default password for the web console
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq   # Persistent storage for RabbitMQ data
+
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # Cache
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  laniakea-redis:
+    image: redis:latest
+    container_name: laniakea-redis
+    # environment:
+      # - REDIS_PASSWORD=mysecurepassword  # Set the Redis password
+    # command: ["redis-server", "--requirepass", "mysecurepassword"]
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # Monitoring
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Prometheus
   laniakea-prometheus:
     image: prom/prometheus:latest
     container_name: laniakea-prometheus
     volumes:
-      - ./database/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
     ports:
       - "9090:9090"
+
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # Monitoring
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  laniakea-grafana:
+      image: grafana/grafana-oss:latest
+      container_name: laniakea-grafana
+      environment:
+        - GF_SECURITY_ADMIN_USER=admin
+        - GF_SECURITY_ADMIN_PASSWORD=admin
+        - GF_USERS_ALLOW_SIGN_UP=false
+        - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/
+        - GF_DATABASE_TYPE=postgres           # Set the database type to PostgreSQL
+        - GF_DATABASE_HOST=postgres:5432      # PostgreSQL server host and port
+        - GF_DATABASE_NAME=grafana            # Database name
+        - GF_DATABASE_USER=grafana            # PostgreSQL user for Grafana
+        - GF_DATABASE_PASSWORD=grafana        # PostgreSQL user password
+      ports:
+        - "3000:3000"
+      depends_on:
+        - laniakea-postgres                   # Wait until PostgreSQL is ready
+      volumes:
+        - grafana-data:/var/lib/grafana
+        - .,/observability/grafana/grafana.ini:/etc/grafana/grafana.ini:ro # Use a custom configuration file
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Laniakea Microservices
@@ -117,6 +173,17 @@ services:
       start_period: 10s
       timeout: 5s
       retries: 3
+
+  # Redis Web Console
+  phpredisadmin:
+    image: erikdubbelboer/phpredisadmin
+    container_name: phpredisadmin
+    environment:
+      - REDIS_1_HOST=laniakea-redis
+    ports:
+      - "8080:80"
+    depends_on:
+      - laniakea-redis
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # LOCAL DEVELOPMENT PURPOSE ONLY
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
@@ -127,6 +194,12 @@ volumes:
   mongo-data:
     name: laniakea-mongodb-data
   prometheus_data:
+    driver: local
+  rabbitmq-data:
+    driver: local
+  redis-data:
+    driver: local
+  grafana-data:
     driver: local
 
 networks:
