@@ -133,6 +133,26 @@ services:
         condition: service_healthy
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  # Laniakea Frontend
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  laniakea-angular-app:
+    container_name: laniakea-angular-app
+    build:
+      context: ../../frontend/laniakea-angular-app
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    # environment:
+    #   - port=3000
+    # env_file:
+    #   - ../docker.env
+    # depends_on:
+    #   reverse-proxy:
+    #     condition: service_healthy
+    #   laniakea-mongodb:
+    #     condition: service_healthy
+
+  #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Cloud Stacks
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Google Cloud - Datastore
