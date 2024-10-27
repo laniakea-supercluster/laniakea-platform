@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CHECK ALL PROCEEDS/RESOURCES THAT MUST BE INCLIDED FOR MICROSERVICES
 
 # laniakea-platform
@@ -142,3 +143,6 @@ https://badgen.net/
 https://simpleicons.org/
 
 --->                                                                               
+=======
+# laniakea-react-app
+>>>>>>> origin/develop
