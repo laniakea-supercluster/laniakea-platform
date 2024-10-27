@@ -132,16 +132,33 @@ services:
       laniakea-mongodb:
         condition: service_healthy
 
+  laniakea-mcs-logistics:
+    container_name: laniakea-mcs-logistics
+    build:
+      context: ../../microservices/laniakea-mcs-logistics
+      dockerfile: Dockerfile
+    ports:
+      - "3900:3900"
+    environment:
+      - port=3900
+    env_file:
+      - ../docker.env
+    depends_on:
+      reverse-proxy:
+        condition: service_healthy
+      laniakea-mongodb:
+        condition: service_healthy
+
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Laniakea Frontend
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  laniakea-angular-app:
-    container_name: laniakea-angular-app
-    build:
-      context: ../../frontend/laniakea-angular-app
-      dockerfile: Dockerfile
-    ports:
-      - "80:80"
+  # laniakea-angular-app:
+  #   container_name: laniakea-angular-app
+  #   build:
+  #     context: ../../frontend/laniakea-angular-app
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "80:80"
     # environment:
     #   - port=3000
     # env_file:
