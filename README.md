@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 CHECK ALL PROCEEDS/RESOURCES THAT MUST BE INCLIDED FOR MICROSERVICES
 
 # laniakea-platform
@@ -143,6 +142,92 @@ https://badgen.net/
 https://simpleicons.org/
 
 --->                                                                               
-=======
-# laniakea-react-app
->>>>>>> origin/develop
+
+
+
+<!-- 
+LIBS
+npx eslint .
+npx grunt clean
+DEBUG=eslint:* npx grunt eslint
+
+npx grunt check --type=breaking
+npx grunt check --type=feat
+npx grunt check --type=fix
+
+npx compodoc -p tsconfig.json -s
+npm install eslint@latest --save-dev --legacy-peer-deps //bypass the peer dependency resolutio
+npm install eslint@latest eslint-plugin-import@latest eslint-config-airbnb-base@latest --save-dev --legacy-peer-deps
+
+
+npm cache clean --force
+npm access list packages
+npm access list collaborators [<package> [<user>]]
+
+npm publish --access public
+npm publish --access public --verbose
+npm unpublish @atisiothings/lib-core-domain@0.0.6
+npm unpublish @atisiothings/lib-core-domain@0.0.6 --force
+
+
+// https://pt.stackoverflow.com/questions/22431/express%C3%A3o-regular-para-rg
+
+
+
+git config pull.rebase false
+git merge origin/develop --allow-unrelated-histories
+git credential-osxkeychain erase
+host=github.com
+-->
+
+
+<!-- 
+LIBS CONT...
+
+npx eslint .
+npx grunt clean
+DEBUG=eslint:* npx grunt eslint
+
+npx grunt check --type=breaking
+npx grunt check --type=feat
+npx grunt check --type=fix
+
+npx compodoc -p tsconfig.json -s
+npm install eslint@latest --save-dev --legacy-peer-deps //bypass the peer dependency resolutio
+npm install eslint@latest eslint-plugin-import@latest eslint-config-airbnb-base@latest --save-dev --legacy-peer-deps
+
+
+npm cache clean --force
+npm access list packages
+npm access list collaborators [<package> [<user>]]
+
+npm publish --access public
+npm publish --access public --verbose
+npm unpublish @atisiothings/lib-core-domain@0.0.6
+npm unpublish @atisiothings/lib-core-domain@0.0.6 --force
+
+
+// https://pt.stackoverflow.com/questions/22431/express%C3%A3o-regular-para-rg
+
+# GIT 
+git remote add origin // git init
+git remote set-url origin 
+git merge origin/develop --allow-unrelated-histories
+git credential-osxkeychain erase
+host=github.com
+
+error: RPC failed; HTTP 400 curl 22 The requested URL returned error: 400
+git config --global http.postBuffer 157286400
+
+
+# DEV - GRUNT
+npx grunt clean --projects=laniakea-lib-database,laniakea-lib-central  
+
+npx grunt --projects=laniakea-lib-central --build-type=ts
+npx grunt deploy --projects=laniakea-lib-central --build-type=ts
+
+npx grunt --projects=laniakea-lib-database --build-type=nest
+npx grunt deploy --projects=laniakea-lib-database --build-type=nest
+npx grunt --projects=laniakea-lib-database,laniakea-lib-http --build-type=nest
+
+-->
