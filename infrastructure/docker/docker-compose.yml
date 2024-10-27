@@ -19,7 +19,7 @@ services:
       restart_policy:
         condition: on-failure
         max_attempts: 5
-
+  
   # MongoDB
   laniakea-mongodb:
     container_name: laniakea-mongodb
@@ -89,7 +89,7 @@ services:
       - "9090:9090"
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  # Monitoring
+  # Observability
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   laniakea-grafana:
       image: grafana/grafana-oss:latest

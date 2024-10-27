@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36" version="24.7.8">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.7.16" pages="2">
   <diagram name="HexArch" id="I8ls8W7pAWVny5Z_Kgw4">
     <mxGraphModel dx="3275" dy="1264" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
@@ -447,6 +447,29 @@
           <mxGeometry x="0.3466" y="3" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="vbNcS-KjZixKnFvoRu0d" name="Kubernetes">
+    <mxGraphModel dx="1452" dy="847" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="3AJAOgRq3XamZRvH1Q7m-2" value="&lt;div&gt;Namespaces&lt;/div&gt;&lt;div&gt;- datastore&lt;/div&gt;&lt;div&gt;- integration&lt;/div&gt;&lt;div&gt;- observability&lt;/div&gt;&lt;div&gt;- laniakea&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;horizontal=1;align=left;verticalAlign=top;" vertex="1" parent="1">
+          <mxGeometry x="10" y="10" width="120" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="3AJAOgRq3XamZRvH1Q7m-3" value="Laniakea" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;verticalAlign=top;align=left;spacingTop=0;spacingLeft=9;fontStyle=1;fontColor=#3399FF;" vertex="1" parent="1">
+          <mxGeometry x="327" y="81" width="603" height="639" as="geometry" />
+        </mxCell>
+        <mxCell id="3AJAOgRq3XamZRvH1Q7m-4" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="50" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="3AJAOgRq3XamZRvH1Q7m-1" value="" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;kubernetesLabel=1;prIcon=ns" vertex="1" parent="1">
+          <mxGeometry x="290" y="50" width="50" height="48" as="geometry" />
+        </mxCell>
+        <mxCell id="3AJAOgRq3XamZRvH1Q7m-5" value="" style="aspect=fixed;sketch=0;html=1;dashed=0;whitespace=wrap;verticalLabelPosition=bottom;verticalAlign=top;fillColor=#2875E2;strokeColor=#ffffff;points=[[0.005,0.63,0],[0.1,0.2,0],[0.9,0.2,0],[0.5,0,0],[0.995,0.63,0],[0.72,0.99,0],[0.5,1,0],[0.28,0.99,0]];shape=mxgraph.kubernetes.icon2;prIcon=deploy" vertex="1" parent="1">
+          <mxGeometry x="410" y="120" width="50" height="48" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
