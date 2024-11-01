@@ -27,7 +27,7 @@ services:
     ports:
       - "3900:3900"
     environment:
-      - port=3900
+      - PORT=3900
     env_file:
       - ../docker.env
     depends_on:
