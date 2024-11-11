@@ -1,10 +1,28 @@
-CHECK ALL PROCEEDS/RESOURCES THAT MUST BE INCLIDED FOR MICROSERVICES
+CHECK ALL PROCEEDS/RESOURCES THAT MUST BE INCLUDED FOR MICROSERVICES
 
 # laniakea-platform
 Laniakea platform is a conceptual project that likely revolves around providing a PaaS solution. Modular platform using various technologies like NestJS, TypeScript, Grunt, and potentially SCSS for front-end styling.
 
-PCB: https://www.pcb-hero.com/?utm_source=kitty&utm_medium=Linkedin&utm_campaign=post20241011152216&utm_content=native_video
 
+
+
+
+### <span style="color:#0099FF; font-weight: bolder;">Kubernetes</span> 
+
+## Namespaces
+
+
+
+
+
+
+
+
+
+
+
+
+### <span style="color:#0099FF; font-weight: bolder">Docker</span> 
 docker-compose build --no-cache <service-a> <service-b>
 docker-compose up -d --build servicea serviceb
 docker-compose up -d --build --no-cache servicea serviceb
@@ -15,6 +33,29 @@ docker compose restart servicea
 
 docker-compose up -d --build laniakea-mcs-auth
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+REMOVE _files...
 
 find . -name '._*' -delete
 
@@ -60,6 +101,7 @@ https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 
 
 Docker
+docker network inspect bridge
 docker login registry.hub.docker.com 
 
 
@@ -230,4 +272,8 @@ npx grunt --projects=laniakea-lib-database --build-type=nest
 npx grunt deploy --projects=laniakea-lib-database --build-type=nest
 npx grunt --projects=laniakea-lib-database,laniakea-lib-http --build-type=nest
 
+
+
+IoT
+PCB: https://www.pcb-hero.com/?utm_source=kitty&utm_medium=Linkedin&utm_campaign=post20241011152216&utm_content=native_video
 -->
