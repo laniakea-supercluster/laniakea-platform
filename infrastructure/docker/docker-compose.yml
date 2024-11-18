@@ -104,9 +104,9 @@ services:
   laniakea-redis:
     image: redis:latest
     container_name: laniakea-redis
-    # environment:
-      # - REDIS_PASSWORD=mysecurepassword  # Set the Redis password
-    # command: ["redis-server", "--requirepass", "mysecurepassword"]
+    environment:
+      - REDIS_PASSWORD=q1w2e3R4t5
+    command: ["redis-server", "--appendonly", "yes", "--requirepass", "q1w2e3R4t5"]
     ports:
       - "6379:6379"
     volumes:

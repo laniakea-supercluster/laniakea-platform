@@ -64,6 +64,19 @@ find . -name '._*' -delete
 
 
 <!---
+LOAD .env
+# LANIAKEA
+LANIAKEA_HOME=/Volumes/ssd/workspace/projects/atis/laniakea-supercluster/laniakea-platform
+lcp_local() {
+  export $(grep -v "^#" "$LANIAKEA_HOME/infrastructure/local.env" | xargs)
+}
+lcp_docker() {
+  export $(grep -v "^#" "$LANIAKEA_HOME/infrastructure/doker.env" | xargs)
+}
+export PATH=$PATH:$LANIAKEA_HOME
+
+-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 DOC
 npx compodoc -p tsconfig.json -s -w 
 

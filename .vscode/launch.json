@@ -1,0 +1,28 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "mcs-logistics",
+      "skipFiles": [
+        "<node_internals>/**"
+      ],
+      "program": "${workspaceFolder}/microservices/laniakea-mcs-logistics/src/main.ts",
+      "preLaunchTask": "npm: start:debug",
+      "outFiles": [
+        "${workspaceFolder}/microservices/laniakea-mcs-logistics/**/*.js"
+      ],
+      "sourceMaps": true,
+      "restart": true,
+      "console": "integratedTerminal"      
+    },
+    {
+      "type": "node",
+      "request": "attach",
+      "name": "Attach to NestJS",
+      "port": 9229,
+      "restart": true
+    }
+  ]
+}
