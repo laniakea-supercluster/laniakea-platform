@@ -124,6 +124,9 @@ docker compose -f docker-compose.yml up -d <service1> <service2> <service...>
 
 docker compose down -v
 
+docker image prune
+docker image prune --all
+
 
 Cloud Stacks
 
@@ -284,6 +287,12 @@ npx grunt deploy --projects=laniakea-lib-central --build-type=ts
 npx grunt --projects=laniakea-lib-database --build-type=nest
 npx grunt deploy --projects=laniakea-lib-database --build-type=nest
 npx grunt --projects=laniakea-lib-database,laniakea-lib-http --build-type=nest
+
+#CHECK Deps
+npm install -g npm-check
+npm-check
+
+
 
 
 
