@@ -18,12 +18,12 @@ db.refund.aggregate([
       from: "refund_reminds",
       localField: "_id",
       foreignField: "thing",
-      as: "refundReminds" // Alias for joined refund_reminds documents
+      as: "reminds" // Alias for joined refund_reminds documents
     }
   },
   {
     $unwind: {
-      path: "$refundReminds", // Unwind refundReminds array
+      path: "$reminds", // Unwind refundReminds array
       preserveNullAndEmptyArrays: true // Include documents without refundReminds
     }
   },  
@@ -31,17 +31,25 @@ db.refund.aggregate([
     $match: {
       $and: [
         { state: { $eq: "GENERATED" } },
-        { "reminds.expiresAt": { $gt: new Date() } },
+        { "remindRules.expiresAt": { $gt: new Date() } },
+        {
+          $or: [
+            { "reminds": null },
+            { "reminds.nextPoll": { $lt: new Date() } }
+          ]
+        },
         { "refundTracks.steps.0.state": "PENDING" },
-        { "refundTracks.steps.0.oneTimeCode.status": "CREATED" },
+        { "refundTracks.steps.0.oneTimeCode.status": { $in: ["CREATED", "CONFIRMED"] } },
       ]
     }
   },
   {
     $project: {
       _id: 1,
+      qrEndpoint: 1,
       fields: 1,
       recipients: 1,
+      remindRules: 1,
       carrier: 1,
       information: 1,
       company: 1,
@@ -50,11 +58,12 @@ db.refund.aggregate([
       createdAt: 1,
       changedAt: 1,
       oneTimeCode: { $arrayElemAt: ["$refundTracks.steps.oneTimeCode", 0] },
-      "refundReminds": 1
+      "reminds": 1
     }
-  }
+  },
+  { $limit: 1 }
 ])
-.limit(1);
+// .limit(1);
 
 // db.refund.find({
 //     state: "GENERATED",
