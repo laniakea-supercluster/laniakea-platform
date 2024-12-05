@@ -1,0 +1,16 @@
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: laniakea-job
+  # namespace: laniakea-cmy-backend
+spec:
+  schedule: "0 0 * * *"  # Cron schedule: Midnight every day
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: job
+            image: job-logistics:latest
+            imagePullPolicy: Never # use localhost image for dev purposes

@@ -1,0 +1,7 @@
+---
+apiVersion: v1
+data:
+  mcs-name: mcs-logistics
+kind: ConfigMap
+metadata:
+  name: config

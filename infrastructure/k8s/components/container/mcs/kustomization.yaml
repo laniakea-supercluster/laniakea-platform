@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+
+patches:
+- path: patch-mcs.yaml
+  target:
+    kind: Deployment
+    name: laniakea-*
+# - patch: |-
+#     - op: add
+#       path: /some/existing/path
+#       value: new value  

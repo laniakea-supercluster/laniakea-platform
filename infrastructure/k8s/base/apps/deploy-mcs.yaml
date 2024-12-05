@@ -1,0 +1,31 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laniakea-mcs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mcs
+  template:
+    metadata:
+      labels: 
+        app: mcs
+    spec:
+      containers:
+      - name: mcs
+        image: mcs:0.0.0
+        imagePullPolicy: Never # use localhost image for dev purposes
+        # resources:
+        #   requests:
+        #     memory: "128Mi"
+        #     cpu: "250m"
+        #   limits:
+        #     memory: "1Gi"
+        #     cpu: "1"
+        # ports:
+        #   - containerPort: 3900
+        # envFrom:
+        #   - configMapRef:
+        #       name: mcs-logistics-env

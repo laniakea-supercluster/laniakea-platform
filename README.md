@@ -299,4 +299,20 @@ https://generadordata.com/
 
 IoT
 PCB: https://www.pcb-hero.com/?utm_source=kitty&utm_medium=Linkedin&utm_campaign=post20241011152216&utm_content=native_video
+
+
+Podman
+podman --version
+
+podman machine stop <machine-name>
+podman machine start <machine-name>
+podman machine set --rootful podman-machine-k8s
+podman machine set --volume /Volumes:/Volumes <machine-name>
+
+podman machine list
+
+
+
+
+
 -->

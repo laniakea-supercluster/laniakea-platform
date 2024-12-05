@@ -1,0 +1,32 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: laniakea-eng
+  # namespace: laniakea-cmy-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: eng-logistics
+  template:
+    metadata:
+      labels: 
+        app: eng-logistics
+    spec:
+      containers:
+      - name: eng
+        image: eng-logistics:latest
+        imagePullPolicy: Never # use localhost image for dev purposes
+        # resources:
+        #   requests:
+        #     memory: "128Mi"
+        #     cpu: "250m"
+        #   limits:
+        #     memory: "1Gi"
+        #     cpu: "1"
+        # ports:
+        #   - containerPort: 3900
+        # envFrom:
+        #   - configMapRef:
+        #       name: eng-logistics-env
