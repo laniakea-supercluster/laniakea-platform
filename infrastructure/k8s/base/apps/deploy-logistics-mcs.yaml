@@ -1,0 +1,53 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-logistics-mcs
+spec:
+  selector:
+    matchLabels:
+      app: mcs-logistics
+  template:
+    metadata:
+      labels:
+        app: mcs-logistics
+    spec:
+      # serviceAccountName: default
+      # terminationGracePeriodSeconds: 5
+      # securityContext:
+        # fsGroup: 1000
+        # runAsGroup: 1000
+        # runAsNonRoot: true
+        # runAsUser: 1000
+      containers:
+      - name: mcs-logistics
+        # securityContext:
+          # allowPrivilegeEscalation: false
+          # capabilities:
+            # drop:
+              # - all
+          # privileged: false
+          # readOnlyRootFilesystem: true
+        image: gcr.io/google-samples/microservices-demo/adservice:v0.4.1
+        ports:
+        - containerPort: 9555
+        envFrom:
+          - configMapRef:
+              name: logistics-config
+        resources:
+          requests:
+            cpu: 200m
+            memory: 180Mi
+          limits:
+            cpu: 300m
+            memory: 300Mi
+        # readinessProbe:
+          # initialDelaySeconds: 20
+          # periodSeconds: 15
+          # exec:
+            # command: ["/bin/grpc_health_probe", "-addr=:9555"]
+        # livenessProbe:
+          # initialDelaySeconds: 20
+          # periodSeconds: 15
+          # exec:
+            # command: ["/bin/grpc_health_probe", "-addr=:9555"]

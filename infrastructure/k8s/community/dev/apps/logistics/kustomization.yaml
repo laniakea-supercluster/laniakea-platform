@@ -1,0 +1,18 @@
+---
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: logistics-config
+    envs:
+      - logistics.env
+
+replicas:
+- name: deploy-logistics-mcs
+  count: 5
+
+resources:
+  - ../../../../base
