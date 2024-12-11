@@ -14,6 +14,7 @@ microservices/
 iot/
 template/
 terraform/
+gitops/
 
 .nx/installation
 .nx/cache
