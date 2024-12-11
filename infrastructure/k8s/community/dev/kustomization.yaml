@@ -8,5 +8,5 @@ labels:
       env: dev
 
 resources:
-  - ../../infra
-  - apps
+  - ../common
+  # - apps
