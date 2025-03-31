@@ -1,0 +1,302 @@
+ 2851  npx grunt default --projects=laniakea-lib-audit --build-type=nest
+ 2852  npx grunt deploy --projects=laniakea-lib-audit --build-type=nest
+ 2855  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2859  npx grunt --projects=laniakea-lib-audit --build-type=nest
+ 2860  npx grunt deploy --projects=laniakea-lib-audit --build-type=nest
+ 2862  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2903  npx grunt --projects=laniakea-lib-audit --build-type=nest
+ 2904  npx grunt deploy --projects=laniakea-lib-audit --build-type=nest
+ 2906  npx grunt --projects=laniakea-lib-http --build-type=nest
+ 2907  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 2910  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2919  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2923  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2927  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2932  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2936  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2939  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2941  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 2945  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2947  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2949  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 2952  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 2955  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2958  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2960  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2962  npx grunt clean --projects=laniakea-lib-http --build-type=nest
+ 2963  npx grunt --projects=laniakea-lib-http --build-type=nest
+ 2964  npx frunt deploy --projects=laniakea-lib-http --build-type=nest
+ 2965  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 2968  npx grunt clean --projects=laniakea-lib-http --build-type=nest
+ 2969  npx grunt --projects=laniakea-lib-http --build-type=nest
+ 2970  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 2973  npx grunt clean --projects=laniakea-lib-http --build-type=nest
+ 2974  npx grunt --projects=laniakea-lib-http --build-type=nest
+ 2975  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 2978  npx grunt --projects=laniakea-lib-http --build-type=nest
+ 2979  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 2984  npx default grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 2985  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2988  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2991  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2994  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 2997  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 3002  npx grunt clean default deploy --projects=laniakea-lib-http --build-type=nest
+ 3007  npx grunt clean default deploy --projects=laniakea-lib-http --build-type=nest
+ 3010  npx grunt clean default deploy --projects=laniakea-lib-database --build-type=nest
+ 3055  npx grunt clean --projects=laniakea-lib-database --build-type=nest
+ 3059  npx ng version\n
+ 3107  npx create-nx-workspace@latest angular-monorepo --preset=angular-monorepo
+ 3112  npx nx serve laniakea-angular-app
+ 3115  npx nx serve angular-store
+ 3121  npx create-nx-workspace@latest myngapp --preset=angular-standalone
+ 3123  npx create-nx-workspace@latest laniakea-angular-app --preset=angular-standalone
+ 3124  npx create-nx-workspace@latest laniakea-platform --preset=angular-monorepo
+ 3128  npx ng add @angular/material\n
+ 3133  npx ng add @angular/material\n
+ 3145  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3150  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3158  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3160  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3166  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3167  npx nx ng add @angular/material 
+ 3170  npx nx g @angular/material:ng-add --project=laniakea-angular-app 
+ 3172  npx nx g @angular/material:ng-add --project=laniakea-angular-app 
+ 3173  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3196  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3198  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3200  npx nx add @angular/material\n
+ 3201  npx nx add @angular/material --force\n
+ 3203  npx create-nx-workspace@latest\n
+ 3230  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3232  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3238  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3241  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3243  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3246  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3248  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3262  npx nx run laniakea-angular-app:serve --configuration=development 
+ 3278  npx nx add ngx-perfect-scrollbar\n
+ 3279  npx nx remove ngx-perfect-scrollbar\n
+ 3280  npx nx del ngx-perfect-scrollbar\n
+ 3281  npx nx help\n
+ 3284  npx nx add ngx-scrollbar\n
+ 3350  npx grunt clean --projects=laniakea-lib-encode --build-type=ts
+ 3352  npx grunt clean --projects=laniakea-lib-encode --build-type=ts
+ 3355  npx grunt clean --projects=laniakea-lib-encode --build-type=ts
+ 3356  npx grunt --projects=laniakea-lib-encode --build-type=ts
+ 3357  npx grunt clean --projects=laniakea-lib-http --build-type=nest
+ 3358  npx grunt clean --projects=laniakea-lib-encode --build-type=ts
+ 3359  npx grunt --projects=laniakea-lib-encode --build-type=ts
+ 3360  npx grunt --projects=laniakea-lib-http --build-type=nest
+ 3361  npx grunt --projects=laniakea-lib-encode --build-type=ts
+ 3362  npx grunt clean --projects=laniakea-lib-encode --build-type=ts
+ 3363  npx grunt --projects=laniakea-lib-encode,laniakea-lib-central --build-type=ts
+ 3364  npx grunt clean --projects=laniakea-lib-encode,laniakea-lib-central --build-type=ts
+ 3365  npx grunt --projects=laniakea-lib-encode,laniakea-lib-central --build-type=ts
+ 3366  npx grunt --projects=laniakea-lib-encode --build-type=ts
+ 3368  npx grunt --projects=laniakea-lib-encode --build-type=ts
+ 3369  npx grunt deploy --projects=laniakea-lib-encode --build-type=ts
+ 3382  npx grunt --projects=laniakea-lib-commons --build-type=ts
+ 3398  npx grunt --projects=laniakea-lib-http --build-type=nest
+ 3399  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 3405  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 3408  npx grunt --projects=laniakea-lib-http --build-type=nest
+ 3409  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 3412  npx default grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 3413  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 3416  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 3419  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 3422  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 3424  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 3426  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 3438  npx grunt default --projects=laniakea-lib-commons --build-type=ts
+ 3439  npx grunt deploy --projects=laniakea-lib-commons --build-type=ts
+ 3444  npx grunt default deploy --projects=laniakea-lib-commons --build-type=ts
+ 3447  npx grunt default deploy --projects=laniakea-lib-commons --build-type=ts
+ 3595  npx grunt default --projects=laniakea-lib-database --build-type=ts
+ 3596  npx grunt deploy --projects=laniakea-lib-database --build-type=ts
+ 3597  npx grunt default --projects=laniakea-lib-database --build-type=ts
+ 3598  npx grunt deploy --projects=laniakea-lib-database --build-type=ts
+ 3599  npx grunt serveDocs --projects=laniakea-lib-database --build-type=ts
+ 3600  npx grunt default --projects=laniakea-lib-database --build-type=ts
+ 3601  npx grunt serveDocs --projects=laniakea-lib-database --build-type=ts
+ 3602  npx grunt deploy --projects=laniakea-lib-database --build-type=ts
+ 3606  npx grunt --projects=laniakea-lib-metrics --build-type=nest
+ 3608  npx grunt --projects=laniakea-lib-http,laniakea-lib-metrics --build-type=nest
+ 3609  npx grunt deploy --projects=laniakea-lib-http,laniakea-lib-metrics --build-type=nest
+ 3610  npx grunt deploy --projects=laniakea-lib-metrics --build-type=nest
+ 3611  npx grunt deploy --projects=laniakea-lib-encode --build-type=nest
+ 3612  npx grunt deploy --projects=laniakea-lib-metrics --build-type=nest
+ 3617  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 3618  npx grunt clean --projects=laniakea-lib-http --build-type=nest
+ 3619  npx grunt --projects=laniakea-lib-http --build-type=nest
+ 3620  npx grunt deploy --projects=laniakea-lib-http --build-type=nest
+ 3627  npx grunt default deploy --projects=laniakea-lib-metrics --build-type=nest
+ 3630  npx grunt default deploy --projects=laniakea-lib-metrics --build-type=nest
+ 3633  npx grunt default deploy --projects=laniakea-lib-metrics --build-type=nest
+ 3638  npx grunt default deploy --projects=laniakea-lib-metrics --build-type=nest
+ 3641  npx grunt default deploy --projects=laniakea-lib-metrics --build-type=nest
+ 3644  npx grunt default deploy --projects=laniakea-lib-metrics --build-type=nest
+ 3801  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 3828  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 3829  npx grunt default deploy --projects=laniakea-lib-core --build-type=ts
+ 3848  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 3872  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 3877  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 3879  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 3881  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 3883  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 3885  npx grunt clean --projects=laniakea-lib-commons --build-type=nest
+ 3886  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 3890  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 3892  npx grunt clean --projects=laniakea-lib-logistics --build-type=nest
+ 3893  npx grunt default --projects=laniakea-lib-logistics --build-type=nest
+ 3894  npx grunt clean --projects=laniakea-lib-logistics --build-type=nest
+ 3895  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 3901  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 3904  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 3906  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 3907  npx grunt clean --projects=laniakea-lib-logistics --build-type=nest
+ 3908  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 3910  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 3911  npx grunt clean --projects=laniakea-lib-http --build-type=nest
+ 3912  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 3914  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 3917  npx grunt default deploy --projects=laniakea-lib-metrics --build-type=nest
+ 3924  npx grunt default deploy --projects=laniakea-lib-metrics --build-type=nest
+ 3927  npx grunt default deploy --projects=laniakea-lib-metrics --build-type=nest
+ 3930  npx grunt default deploy --projects=laniakea-lib-database --build-type=nest
+ 3966  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 3969  npx grunt default deploy --projects=laniakea-lib-database --build-type=nest
+ 3971  npx grunt default deploy --projects=laniakea-lib-database --build-type=nest
+ 3976  npx grunt default deploy --projects=laniakea-lib-database --build-type=nest
+ 3979  npx grunt default deploy --projects=laniakea-lib-database --build-type=nest
+ 3982  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 3984  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 4025  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4039  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 4042  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 4045  npx grunt default deploy --projects=laniakea-lib-database --build-type=nest
+ 4048  npx grunt default deploy --projects=laniakea-lib-core --build-type=nest
+ 4068  npx grunt default deploy --projects=laniakea-lib-encode --build-type=ts
+ 4091  npx nx run laniakea-angular-app:serve --configuration=development
+ 4094  npx nx run laniakea-angular-app:serve --configuration=development
+ 4102  npx nx build laniakea-angular-app
+ 4120  npx nx run laniakea-angular-app:serve --configuration=development 
+ 4126  npx nx run laniakea-angular-app:serve --configuration=development 
+ 4129  npx nx run laniakea-angular-app:serve --configuration=development 
+ 4134  npx nx run laniakea-angular-app:serve --configuration=development 
+ 4139  npx nx run laniakea-angular-app:serve --configuration=development 
+ 4143  npx nx run laniakea-angular-app:serve --configuration=development 
+ 4145  npx nx run laniakea-angular-app:serve --configuration=development 
+ 4146  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4164  npx react-native init laniakea-react-poc
+ 4166  npx @react-native-community/cli init
+ 4173  npx create-react-app laniakeaPocWeb
+ 4174  npx create-react-app laniakea-react-poc
+ 4209  npx grunt default deploy --projects=laniakea-lib-core --build-type=ts
+ 4211  npx grunt default --projects=laniakea-lib-central --build-type=ts
+ 4212  npx grunt default deploy --projects=laniakea-lib-central --build-type=ts
+ 4214  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 4216  npx grunt default deploy --projects=laniakea-lib-database --build-type=nest
+ 4218  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 4220  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4239  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4245  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4247  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4249  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4384  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4388  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 4399  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4406  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 4409  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 4411  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 4413  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 4465  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4468  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4470  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4475  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4511  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4516  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4521  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4524  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4786  npx grunt default --projects=laniakea-lib-http --build-type=nest
+ 4788  npx grunt default --projects=laniakea-lib-http --build-type=nest
+ 4789  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 4791  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 4805  npx grunt default --projects=laniakea-lib-enterprise --build-type=nts
+ 4806  npx grunt default --projects=laniakea-lib-enterprise --build-type=ts
+ 4807  npx grunt default deploy --projects=laniakea-lib-enterprise --build-type=ts
+ 4812  npx grunt default deploy --projects=laniakea-lib-enterprise --build-type=ts
+ 4817  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4842  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4887  npx grunt default deploy --projects=laniakea-lib-hhtp --build-type=nest
+ 4888  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 4890  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 4892  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 4900  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 4905  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 4908  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 4913  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 4920  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 4963  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4965  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 4983  npx grunt default deploy --projects=laniakea-lib-http --build-type=nest
+ 5001  npx grunt default --projects=laniakea-lib-logistics --build-type=nest
+ 5002  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5006  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5008  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5015  npx grunt default  --projects=laniakea-lib-logistics --build-type=nest
+ 5017  npx grunt default  --projects=laniakea-lib-logistics --build-type=nest
+ 5018  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5022  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5029  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5042  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 5045  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5047  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 5049  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 5050  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5052  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5058  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 5061  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 5064  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5067  npx grunt default deploy --projects=laniakea-lib-commons --build-type=nest
+ 5068  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5071  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5091  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5101  npx grunt default --projects=laniakea-lib-logistics --build-type=nest
+ 5105  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5111  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5117  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5121  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5123  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5128  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5131  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5136  npx grunt default deploy --projects=laniakea-lib-central --build-type=ts
+ 5138  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5140  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5170  npx grunt default --projects=laniakea-lib-logistics --build-type=nest
+ 5171  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5177  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5180  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5183  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5186  npx grunt default --projects=laniakea-lib-logistics --build-type=nest
+ 5187  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5190  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5195  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5198  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5201  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5203  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5205  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5208  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5211  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5214  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5217  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5226  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5235  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5243  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5245  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5299  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5305  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
+ 5308  npx grunt default deploy --projects=laniakea-lib-logistics --build-type=nest
