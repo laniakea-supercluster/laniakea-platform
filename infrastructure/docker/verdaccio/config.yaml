@@ -1,0 +1,29 @@
+# Porta padrão (não precisa mudar se usar 4873)
+storage: /verdaccio/storage
+
+auth:
+  htpasswd:
+    file: ./htpasswd
+    max_users: 1000
+
+uplinks:
+  npmjs:
+    url: https://registry.npmjs.org/
+
+packages:
+  '@*/*':
+    access: $all
+    publish: $authenticated
+    proxy: npmjs
+
+  '**':
+    access: $all
+    publish: $authenticated
+    proxy: npmjs
+
+middlewares:
+  audit:
+    enabled: true
+
+logs:
+  - {type: stdout, format: pretty, level: http}

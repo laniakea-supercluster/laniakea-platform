@@ -285,7 +285,7 @@ npx grunt --projects=laniakea-lib-central --build-type=ts
 npx grunt deploy --projects=laniakea-lib-central --build-type=ts
 
 npx grunt --projects=laniakea-lib-database --build-type=nest
-npx grunt deploy --projects=laniakea-lib-database --build-type=nest
+npx grunt package --projects=laniakea-lib-database --build-type=nest
 npx grunt --projects=laniakea-lib-database,laniakea-lib-http --build-type=nest
 
 #CHECK Deps
@@ -306,10 +306,58 @@ podman --version
 
 podman machine stop <machine-name>
 podman machine start <machine-name>
+podman machine set --rootful podman-machine-default
 podman machine set --rootful podman-machine-k8s
+
+podman machine stop podman-machine-default
+podman machine set --rootful podman-machine-default
+podman machine start podman-machine-default
+podman machine set --volume /Volumes:/Volumes podman-machine-default
+
+
 podman machine set --volume /Volumes:/Volumes <machine-name>
+podman machine set --volume /Volumes:/Volumes podman-machine-default
 
 podman machine list
+podman machine info
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+I MPORTANT
+# Yarn migration
+yarn grunt --workspace=libs --projects=laniakea-lib-core --build-type=ts (default)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# VErdaccio
+No terminal do projeto onde está a lib:
+
+npm adduser --registry http://localhost:4873
+Insira:
+  Username: por ex. devuser
+  Password: senha
+  Email: qualquer
+
+Depois publique:
+  npm publish --registry http://localhost:4873
+
+
+
 
 
 

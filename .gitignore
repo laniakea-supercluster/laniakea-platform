@@ -27,3 +27,5 @@ gitops/
 !.yarn/sdks
 !.yarn/versions
 .pnp.*
+
+*/**/*.tgz */
