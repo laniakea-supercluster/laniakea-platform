@@ -4,21 +4,23 @@ storage: /verdaccio/storage
 auth:
   htpasswd:
     file: ./htpasswd
-    max_users: 1000
+    max_users: -1
 
 uplinks:
   npmjs:
     url: https://registry.npmjs.org/
 
 packages:
-  '@*/*':
+  '@ix/*':
     access: $all
-    publish: $authenticated
+    publish: $all
+    unpublish: $all
     proxy: npmjs
 
   '**':
     access: $all
-    publish: $authenticated
+    publish: $all
+    unpublish: $all
     proxy: npmjs
 
 middlewares:
@@ -26,4 +28,4 @@ middlewares:
     enabled: true
 
 logs:
-  - {type: stdout, format: pretty, level: http}
+  - { type: stdout, format: pretty, level: http }

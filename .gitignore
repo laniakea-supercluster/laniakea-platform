@@ -8,6 +8,9 @@ libs.code-workspace
 app/
 documentation/
 frontend/
+infrastructure/docker/verdaccio/storage
+infrastructure/docker/verdaccio/storage/*
+infrastructure/docker/verdaccio/._storage
 laniakea/
 libs/
 microservices/
@@ -28,4 +31,6 @@ gitops/
 !.yarn/versions
 .pnp.*
 
-*/**/*.tgz */
+**/*.tgz
+
+

@@ -1,67 +1,26 @@
 CHECK ALL PROCEEDS/RESOURCES THAT MUST BE INCLUDED FOR MICROSERVICES
 
 # laniakea-platform
+
 Laniakea platform is a conceptual project that likely revolves around providing a PaaS solution. Modular platform using various technologies like NestJS, TypeScript, Grunt, and potentially SCSS for front-end styling.
 
-
-
-
-
-### <span style="color:#0099FF; font-weight: bolder;">Kubernetes</span> 
+### <span style="color:#0099FF; font-weight: bolder;">Kubernetes</span>
 
 ## Namespaces
 
+### <span style="color:#0099FF; font-weight: bolder">Docker</span>
 
-
-
-
-
-
-
-
-
-
-
-### <span style="color:#0099FF; font-weight: bolder">Docker</span> 
 docker-compose build --no-cache <service-a> <service-b>
 docker-compose up -d --build servicea serviceb
 docker-compose up -d --build --no-cache servicea serviceb
 
 docker compose restart servicea
 
-
-
 docker-compose up -d --build laniakea-mcs-auth
 
+REMOVE \_files...
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-REMOVE _files...
-
-find . -name '._*' -delete
-
-
-
-
+find . -name '.\_\*' -delete
 
 <!---
 LOAD .env
@@ -78,7 +37,7 @@ export PATH=$PATH:$LANIAKEA_HOME
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 DOC
-npx compodoc -p tsconfig.json -s -w 
+npx compodoc -p tsconfig.json -s -w
 
 LOG
 https://levelup.gitconnected.com/error-handling-and-logging-in-nestjs-best-practices-ecc871ade7d7
@@ -115,7 +74,7 @@ https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 
 Docker
 docker network inspect bridge
-docker login registry.hub.docker.com 
+docker login registry.hub.docker.com
 
 
 docker compose -f docker-compose.yml up -d
@@ -189,7 +148,7 @@ BadgeMaker: Outra ferramenta útil para criar badges com suporte a várias integ
 SimpleIcons: Fornece ícones SVG para várias marcas populares, que você pode usar como parte de seus badges.
 
 Exemplo de como criar um badge customizado no Shields.io:
-Acesse o Shields.io. 
+Acesse o Shields.io.
 Escolha o estilo e o tipo de badge que deseja criar.
 Customize o texto, cor, ícone, e outros parâmetros.
 O site irá gerar a URL do badge, que você pode adicionar ao seu README.md usando Markdown ou HTML.
@@ -199,11 +158,9 @@ https://shields.io/
 https://badgen.net/
 https://simpleicons.org/
 
---->                                                                               
+--->
 
-
-
-<!-- 
+<!--
 LIBS
 npx eslint .
 npx grunt clean
@@ -238,8 +195,7 @@ git credential-osxkeychain erase
 host=github.com
 -->
 
-
-<!-- 
+<!--
 LIBS CONT...
 
 npx eslint .
@@ -267,9 +223,9 @@ npm unpublish @atisiothings/lib-core-domain@0.0.6 --force
 
 // https://pt.stackoverflow.com/questions/22431/express%C3%A3o-regular-para-rg
 
-# GIT 
+# GIT
 git remote add origin // git init
-git remote set-url origin 
+git remote set-url origin
 git merge origin/develop --allow-unrelated-histories
 git credential-osxkeychain erase
 host=github.com
@@ -279,7 +235,7 @@ git config --global http.postBuffer 157286400
 
 
 # DEV - GRUNT
-npx grunt clean --projects=laniakea-lib-database,laniakea-lib-central  
+npx grunt clean --projects=laniakea-lib-database,laniakea-lib-central
 
 npx grunt --projects=laniakea-lib-central --build-type=ts
 npx grunt deploy --projects=laniakea-lib-central --build-type=ts
@@ -324,7 +280,31 @@ podman machine info
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 I MPORTANT
 # Yarn migration
+
+>> Para nvm, node, npm, yarn (.zshrc)
+# Config Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Carrega o nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Autocompletar opcional
+nvm use 22.14.0 > /dev/null
+corepack enable
+corepack prepare yarn@stable --activate
+
+
+### Local Development
+rm -rf node_modules .yarn/cache yarn.lock
 yarn grunt --workspace=libs --projects=laniakea-lib-core --build-type=ts (default)
+
+ yarn grunt local --workspace=libs --projects=laniakea-lib-metrics --build-type=nest
+
+
+
+
+yarn install http://localhost:4873 // Verdaccio repo
+
+
+yarn npm login --scope ix
+yarn remove @ix/laniakea-lib-core
 
 
 

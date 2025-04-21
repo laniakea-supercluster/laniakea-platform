@@ -149,7 +149,7 @@ module.exports = function (grunt) {
         });
       });
 
-      grunt.registerTask('default', [
+      grunt.registerTask('local', [
         'clean',
         ...projects.map(p => `build_${p}`),
         'eslintTask',
@@ -270,6 +270,22 @@ Options:
       }
     });
   });
+
+  grunt.registerTask('publish-local', () => {
+    const workspaceBase = path.resolve(__dirname, workspace);
+  
+    projects.forEach((project) => {
+      try {
+        const projectPath = path.resolve(workspaceBase, project);
+        const cmd = `npm publish --access public --registry http://localhost:4873`;
+  
+        execSync(cmd, { cwd: projectPath, stdio: 'inherit' });
+        grunt.log.ok(`Published ${project}`);
+      } catch (error) {
+        grunt.log.error(`Failed to publish ${project}`, error);
+      }
+    });
+  });  
 
   grunt.registerTask('publish', () => {
     const workspaceBase = path.resolve(__dirname, workspace);

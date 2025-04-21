@@ -307,5 +307,15 @@
         // "@typescript-eslint/prefer-namespace-keyword": "off",
         // "@typescript-eslint/triple-slash-reference": "off",
         // "@typescript-eslint/type-annotation-spacing": "off"
-    }
+    },
+    "overrides": [
+      {
+        "files": ["microservices/laniakea-mcs-auth/**/*.ts"],
+        "parserOptions": {
+          "project": "./microservices/laniakea-mcs-auth/tsconfig.json",
+          "tsconfigRootDir": "."
+        }
+      }
+      // Adicione mais microserviços aqui conforme necessário
+    ]    
 }
