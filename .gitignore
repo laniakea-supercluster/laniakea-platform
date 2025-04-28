@@ -32,5 +32,6 @@ gitops/
 .pnp.*
 
 **/*.tgz
+**/tsconfig.tsbuildinfo
 
 

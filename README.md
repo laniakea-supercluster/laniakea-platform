@@ -307,6 +307,10 @@ yarn npm login --scope ix
 yarn remove @ix/laniakea-lib-core
 
 
+TSCONFIG
+npx sort-tsconfig
+npx sort-tsconfig microservices/tsconfig.json -w
+CI/CD: npx sort-tsconfig microservices/tsconfig.json
 
 
 
