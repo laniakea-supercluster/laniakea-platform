@@ -3591,7 +3591,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@willsoto/nestjs-prometheus@npm:^6.0.1":
+"@willsoto/nestjs-prometheus@npm:^6.0.1, @willsoto/nestjs-prometheus@npm:^6.0.2":
   version: 6.0.2
   resolution: "@willsoto/nestjs-prometheus@npm:6.0.2"
   peerDependencies:
@@ -12243,7 +12243,7 @@ __metadata:
     "@types/uuid": "npm:^10.0.0"
     "@typescript-eslint/eslint-plugin": "npm:^8.5.0"
     "@typescript-eslint/parser": "npm:^8.5.0"
-    "@willsoto/nestjs-prometheus": "npm:^6.0.1"
+    "@willsoto/nestjs-prometheus": "npm:^6.0.2"
     amqp-connection-manager: "npm:^4.1.14"
     amqplib: "npm:^0.10.4"
     class-transformer: "npm:^0.5.1"

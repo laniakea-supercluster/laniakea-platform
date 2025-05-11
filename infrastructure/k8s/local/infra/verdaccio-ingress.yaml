@@ -1,0 +1,61 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: verdaccio-ingress
+  namespace: laniakea-local
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "90"
+spec:
+  ingressClassName: nginx
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: verdaccio
+                port:
+                  number: 4873
+
+        # paths:
+        #   - path: /verdaccio(/|$)(.*)
+        #     pathType: ImplementationSpecific
+        #     backend:
+        #       service:
+        #         name: verdaccio
+        #         port:
+        #           number: 4873
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: verdaccio-ingress
+#   namespace: laniakea-local
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /$1
+#     nginx.ingress.kubernetes.io/use-regex: "true"
+#     nginx.ingress.kubernetes.io/proxy-read-timeout: "90"
+# spec:
+#   ingressClassName: nginx
+#   rules:
+#     - http:
+#         paths:
+#           # # Rota padrão para /verdaccio/* (com rewrite)
+#           # - path: /verdaccio/(.*)
+#           #   pathType: ImplementationSpecific
+#           #   backend:
+#           #     service:
+#           #       name: verdaccio
+#           #       port:
+#           #         number: 4873
+
+#           # # Rota para as chamadas com prefixo /verdaccio/-/ (não reescreve o path)
+#           # - path: /verdaccio/-/(.*)
+#           #   pathType: ImplementationSpecific
+#           #   backend:
+#           #     service:
+#           #       name: verdaccio
+#           #       port:
+#           #         number: 4873

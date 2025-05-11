@@ -1,0 +1,68 @@
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: verdaccio
+  labels:
+    app: repo-verdaccio
+spec:
+  serviceName: "verdaccio"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: repo-verdaccio
+  template:
+    metadata:
+      labels:
+        app: repo-verdaccio
+    spec:
+      containers:
+        - name: laniakea-verdaccio
+          image: verdaccio/verdaccio:5
+          env:
+            - name: VERDACCIO_PORT
+              value: "4873"
+          ports:
+            - containerPort: 4873
+          volumeMounts:
+            - name: verdaccio-config
+              mountPath: /verdaccio/conf/config.yaml
+              subPath: config.yaml
+            - name: verdaccio-htpasswd
+              mountPath: /verdaccio/conf/htpasswd
+              subPath: htpasswd              
+            - name: verdaccio-storage
+              mountPath: /verdaccio/storage
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "100m"
+            limits:
+              memory: "256Mi"
+              cpu: "250m"
+          livenessProbe:
+            httpGet:
+              path: /-/ping
+              port: 4873
+            initialDelaySeconds: 10
+            periodSeconds: 300
+            timeoutSeconds: 10
+            failureThreshold: 10
+          readinessProbe:
+            httpGet:
+              path: /-/ping
+              port: 4873
+            initialDelaySeconds: 10
+            periodSeconds: 300
+            timeoutSeconds: 10
+            failureThreshold: 10
+      volumes:
+        - name: verdaccio-config
+          configMap:
+            name: verdaccio-config
+        - name: verdaccio-htpasswd
+          configMap:
+            name: verdaccio-htpasswd            
+        - name: verdaccio-storage
+          persistentVolumeClaim:
+            claimName: verdaccio-storage-pvc

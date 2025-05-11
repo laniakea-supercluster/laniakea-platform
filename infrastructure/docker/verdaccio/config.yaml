@@ -17,6 +17,10 @@ packages:
     unpublish: $all
     proxy: npmjs
 
+  '@*/*':
+    access: $all
+    proxy: npmjs
+
   '**':
     access: $all
     publish: $all

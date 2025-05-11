@@ -1,0 +1,44 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: verdaccio-config
+data:
+  config.yaml: |
+    storage: /verdaccio/storage
+    listen: http://0.0.0.0:4873
+    # url_prefix: /verdaccio/
+
+    auth:
+      htpasswd:
+        file: ./htpasswd
+        max_users: -1
+        # algorithm: bcrypt
+
+    uplinks:
+      npmjs:
+        url: https://registry.npmjs.org/
+
+    packages:
+      '@ix/*':
+        access: $all
+        publish: $all
+        unpublish: $all
+        proxy: npmjs
+
+      '@*/*':
+        access: $all
+        proxy: npmjs
+
+      '**':
+        access: $all
+        publish: $all
+        unpublish: $all
+        proxy: npmjs
+
+    middlewares:
+      audit:
+        enabled: true
+
+    log:
+      - { type: stdout, format: pretty, level: http }

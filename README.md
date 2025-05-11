@@ -23,16 +23,16 @@ REMOVE \_files...
 find . -name '.\_\*' -delete
 
 <!---
-LOAD .env
-# LANIAKEA
-LANIAKEA_HOME=/Volumes/ssd/workspace/projects/atis/laniakea-supercluster/laniakea-platform
-lcp_local() {
-  export $(grep -v "^#" "$LANIAKEA_HOME/infrastructure/local.env" | xargs)
-}
-lcp_docker() {
-  export $(grep -v "^#" "$LANIAKEA_HOME/infrastructure/doker.env" | xargs)
-}
-export PATH=$PATH:$LANIAKEA_HOME
+SETUP ENVIRONMENT
+chmod +x setup-podman.sh
+./setup-podman.sh
+
+chmod +x setup-lania.sh
+./setup-lania.sh
+source ~/.zshrc
+
+
+[ -L ~/external-ssd ] && rm ~/external-ssd && echo "Symlink ~/external-ssd removed"
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
@@ -257,25 +257,9 @@ IoT
 PCB: https://www.pcb-hero.com/?utm_source=kitty&utm_medium=Linkedin&utm_campaign=post20241011152216&utm_content=native_video
 
 
-Podman
-podman --version
-
-podman machine stop <machine-name>
-podman machine start <machine-name>
-podman machine set --rootful podman-machine-default
-podman machine set --rootful podman-machine-k8s
-
-podman machine stop podman-machine-default
-podman machine set --rootful podman-machine-default
-podman machine start podman-machine-default
-podman machine set --volume /Volumes:/Volumes podman-machine-default
 
 
-podman machine set --volume /Volumes:/Volumes <machine-name>
-podman machine set --volume /Volumes:/Volumes podman-machine-default
 
-podman machine list
-podman machine info
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 I MPORTANT
@@ -328,7 +312,7 @@ CI/CD: npx sort-tsconfig microservices/tsconfig.json
 
 
 
-# VErdaccio
+# Verdaccio
 No terminal do projeto onde está a lib:
 
 npm adduser --registry http://localhost:4873
@@ -344,6 +328,9 @@ Depois publique:
 
 
 
+# Useful commends
+tree -L 2 -I 'node_modules|dist|.git' .
+tree -L 4 -I 'node_modules|app-platform|frontend|libs|microservices|template' .
 
 
 

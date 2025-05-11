@@ -15,6 +15,7 @@ module.exports = function (grunt) {
 
   let projects = [];
 
+  
   const requireFromProject = (projectPath, pkg) => {
     try {
       return require(require.resolve(pkg, { paths: [projectPath] }));
