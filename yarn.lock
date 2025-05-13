@@ -1724,6 +1724,45 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ix/laniakea-lib-audit@npm:>=1.0.0-alpha.0 <2.0.0":
+  version: 1.0.0-alpha.0
+  resolution: "@ix/laniakea-lib-audit@npm:1.0.0-alpha.0"
+  checksum: 10c0/e1e16c8c1745331a5458a325c130416a809aefe2b9366957b4215c25ca09f3f1be4cfe0c5cb88e5826fc50bd4471d5fd1387c99b2dea1881f12fa24d973caf95
+  languageName: node
+  linkType: hard
+
+"@ix/laniakea-lib-central@npm:>=1.0.0-alpha.0 <2.0.0":
+  version: 1.0.0-alpha.1
+  resolution: "@ix/laniakea-lib-central@npm:1.0.0-alpha.1"
+  dependencies:
+    "@ix/laniakea-lib-core": "npm:>=1.0.0-alpha.0 <2.0.0"
+  checksum: 10c0/27662fb852809db195d3fd71edaa3252141086af6bf3545289091c19f18006f2c035cd1b96527eeb0451ba0f77c6773cc38297d63841edc5c54a31cbd587da13
+  languageName: node
+  linkType: hard
+
+"@ix/laniakea-lib-core@npm:>=1.0.0-alpha.0 <2.0.0":
+  version: 1.0.0-alpha.3
+  resolution: "@ix/laniakea-lib-core@npm:1.0.0-alpha.3"
+  checksum: 10c0/51aad4f9a05f2bc6442ccc83706e7c15d1453552f3d5fcac9334966260cd1f6b7478426fc52e4710f0a3c2a7f811c60141be15e98a1b85edd67fab67afe6ba47
+  languageName: node
+  linkType: hard
+
+"@ix/laniakea-lib-database@npm:>=1.0.0-alpha.0 <2.0.0":
+  version: 1.0.0-alpha.0
+  resolution: "@ix/laniakea-lib-database@npm:1.0.0-alpha.0"
+  dependencies:
+    "@ix/laniakea-lib-core": "npm:>=1.0.0-alpha.0 <2.0.0"
+  checksum: 10c0/dbebb6e5e7885e1f7a2f9bd70f8d8f95dddacc32b5341cd0ae30a27035d33d5fe24fcaf4ba7ac438d6de7629d03f188ff537ae605852c37cf70ece4bbb3b6217
+  languageName: node
+  linkType: hard
+
+"@ix/laniakea-lib-metrics@npm:>=1.0.0-alpha.0 <2.0.0":
+  version: 1.0.0-alpha.0
+  resolution: "@ix/laniakea-lib-metrics@npm:1.0.0-alpha.0"
+  checksum: 10c0/989bf3d8b416cf98b3f5f8f161d43e7b78a2644c1241fccd8a85ff05389a12ad64ae2404b515f58e760884ce201d76bb3e4154dacdf3e3f79cfad9b3146bbd57
+  languageName: node
+  linkType: hard
+
 "@jest/console@npm:^29.7.0":
   version: 29.7.0
   resolution: "@jest/console@npm:29.7.0"
@@ -11398,6 +11437,11 @@ __metadata:
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
     "@compodoc/compodoc": "npm:^1.1.25"
+    "@ix/laniakea-lib-audit": "npm:>=1.0.0-alpha.0 <2.0.0"
+    "@ix/laniakea-lib-central": "npm:>=1.0.0-alpha.0 <2.0.0"
+    "@ix/laniakea-lib-core": "npm:>=1.0.0-alpha.0 <2.0.0"
+    "@ix/laniakea-lib-database": "npm:>=1.0.0-alpha.0 <2.0.0"
+    "@ix/laniakea-lib-metrics": "npm:>=1.0.0-alpha.0 <2.0.0"
     "@nestjs/cli": "npm:^10.4.2"
     "@nestjs/common": "npm:^10.3.10"
     "@nestjs/config": "npm:^3.2.3"

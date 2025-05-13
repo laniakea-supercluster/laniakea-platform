@@ -25,6 +25,11 @@
     "!microservices/laniakea-mcs-region"
   ],
   "dependencies": {
+    "@ix/laniakea-lib-audit": ">=1.0.0-alpha.0 <2.0.0",
+    "@ix/laniakea-lib-central": ">=1.0.0-alpha.0 <2.0.0",
+    "@ix/laniakea-lib-core": ">=1.0.0-alpha.0 <2.0.0",
+    "@ix/laniakea-lib-database": ">=1.0.0-alpha.0 <2.0.0",
+    "@ix/laniakea-lib-metrics": ">=1.0.0-alpha.0 <2.0.0",
     "@nestjs/common": "^10.3.10",
     "@nestjs/config": "^3.2.3",
     "@nestjs/core": "^10.3.10",
