@@ -8,9 +8,9 @@ spec:
     storage: 3Gi
   accessModes:
     - ReadWriteOnce
-  storageClassName: ""  # <-- also optional but good to make it explicit
+  storageClassName: ""
   hostPath:
-    path: /opt/local-storage/verdaccio/storage
+    path: /var/lib/verdaccio
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

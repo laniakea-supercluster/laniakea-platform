@@ -111,6 +111,7 @@ kind --version
 ```bash
 # /Volumes/ssd/workspace/projects/atis/laniakea-supercluster/laniakea-platform/infrastructure/k8s/kind
 kind create cluster --config kind-config.yaml
+docker exec -it laniakea-cluster-control-plane mkdir -p /var/lib/verdaccio
 kubectl apply -f https://kind.sigs.k8s.io/examples/ingress/deploy-ingress-nginx.yaml
 kubectl wait --namespace ingress-nginx \
   --for=condition=ready pod \
@@ -125,6 +126,15 @@ kubectl logs -n ingress-nginx -l app.kubernetes.io/component=controller
 #endpoins:
 kubectl get endpoints verdaccio -n laniakea-local -o yaml
 ```
+
+### <span style="color:#0099FF; font-weight: bolder;">To be able to use PV and PVC</span>
+```bash
+docker exec -it laniakea-cluster-control-plane bash
+mkdir -p /var/lib/verdaccio
+chmod -R 777 /var/lib/verdaccio
+```
+
+
 
 # <span style="color:#0099AA; font-weight: bolder;">Kustomize</span>
 

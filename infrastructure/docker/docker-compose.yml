@@ -227,16 +227,16 @@ services:
     depends_on:
       - laniakea-redis
 
-  # # Verdaccio local artifacts repos - migrated to kubernetes
-  # verdaccio:
-  #   image: verdaccio/verdaccio:5
-  #   container_name: laniakea-verdaccio
-  #   ports:
-  #     - "4873:4873"
-  #   volumes:
-  #     - ./verdaccio/storage:/verdaccio/storage
-  #     - ./verdaccio:/verdaccio/conf
-  #   restart: unless-stopped
+  # Verdaccio local artifacts repos - migrated to kubernetes
+  verdaccio:
+    image: verdaccio/verdaccio:5
+    container_name: laniakea-verdaccio
+    ports:
+      - "4873:4873"
+    # volumes:
+    #   - /opt/local-storage/verdaccio/storage:/verdaccio/storage
+    #   - /opt/local-storage/verdaccio/conf:/verdaccio/conf
+    restart: unless-stopped
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # LOCAL DEVELOPMENT PURPOSE ONLY
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

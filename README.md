@@ -278,11 +278,13 @@ corepack prepare yarn@stable --activate
 ### Local Development
 rm -rf node_modules .yarn/cache yarn.lock
 yarn grunt --workspace=libs --projects=laniakea-lib-core --build-type=ts (default)
-
  yarn grunt local --workspace=libs --projects=laniakea-lib-metrics --build-type=nest
 
+>> to publish must be logged
 
-
+VERDACCIO
+npm login --registry http://localhost
+npm adduser --registry http://localhost/
 
 yarn install http://localhost:4873 // Verdaccio repo
 
@@ -333,5 +335,14 @@ tree -L 2 -I 'node_modules|dist|.git' .
 tree -L 4 -I 'node_modules|app-platform|frontend|libs|microservices|template' .
 
 
+
+
+
+    "@ix/laniakea-lib-audit": ">=1.0.0-alpha.0 <2.0.0",
+    "@ix/laniakea-lib-central": ">=1.0.0-alpha.0 <2.0.0",
+    "@ix/laniakea-lib-core": ">=1.0.0-alpha.0 <2.0.0",
+    "@ix/laniakea-lib-database": ">=1.0.0-alpha.0 <2.0.0",
+    "@ix/laniakea-lib-metrics": ">=1.0.0-alpha.0 <2.0.0",
+    "@ix/laniakea-lib-sec-comm": ">=1.0.0-alpha.0 <2.0.0",
 
 -->

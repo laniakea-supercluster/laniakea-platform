@@ -5,31 +5,31 @@ metadata:
   name: verdaccio-config
 data:
   config.yaml: |
+    url_prefix: /verdaccio/
     storage: /verdaccio/storage
-    listen: http://0.0.0.0:4873
-    # url_prefix: /verdaccio/
 
     auth:
       htpasswd:
-        file: ./htpasswd
-        max_users: -1
-        # algorithm: bcrypt
+        file: /verdaccio/storage/htpasswd
+        algorithm: bcrypt
+        # max_users: -1
 
     uplinks:
       npmjs:
         url: https://registry.npmjs.org/
+        cache: true
+        timeout: 300
+        max_fails: 10
+        fail_timeout: 300
 
     packages:
       '@ix/*':
         access: $all
         publish: $all
         unpublish: $all
-        proxy: npmjs
-
       '@*/*':
         access: $all
         proxy: npmjs
-
       '**':
         access: $all
         publish: $all
@@ -40,5 +40,63 @@ data:
       audit:
         enabled: true
 
+    security:
+      web:
+        sign:
+          enabled: false
+
     log:
       - { type: stdout, format: pretty, level: http }
+
+
+  # uplinks:
+  #   npmjs:
+  #     url: https://registry.npmjs.org/
+  # packages:
+  #   '@*/*':
+  #     access: $all
+  #     publish: $authenticated
+  #     proxy: npmjs
+  #   '**':
+  #     proxy: npmjs
+  # log: { type: stdout, format: pretty, level: http }
+
+
+
+  # storage: /verdaccio/storage
+  # listen: http://0.0.0.0:4873
+  # url_prefix: /verdaccio/
+
+  # auth:
+  #   htpasswd:
+  #     file: ./htpasswd
+  #     max_users: -1
+  #     # algorithm: bcrypt
+
+  # uplinks:
+  #   npmjs:
+  #     url: https://registry.npmjs.org/
+
+  # packages:
+  #   '@ix/*':
+  #     access: $all
+  #     publish: $all
+  #     unpublish: $all
+  #     proxy: npmjs
+
+  #   '@*/*':
+  #     access: $all
+  #     proxy: npmjs
+
+  #   '**':
+  #     access: $all
+  #     publish: $all
+  #     unpublish: $all
+  #     proxy: npmjs
+
+  # middlewares:
+  #   audit:
+  #     enabled: true
+
+  # log:
+  #   - { type: stdout, format: pretty, level: http }

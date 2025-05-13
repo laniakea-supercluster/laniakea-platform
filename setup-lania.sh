@@ -4,11 +4,6 @@ ZSHRC="$HOME/.zshrc"
 MARKER_BEGIN="# >>> lania setup >>>"
 MARKER_END="# <<< lania setup <<<"
 
-# Create Verdaccio hostPath directories with full permissions
-sudo mkdir -p /opt/local-storage/verdaccio/conf
-sudo mkdir -p /opt/local-storage/verdaccio/storage
-sudo chmod -R 777 /opt/local-storage/verdaccio
-
 echo "✅ Created and set permissions for /local-storage/verdaccio"
 
 # Update .zshrc if not already set

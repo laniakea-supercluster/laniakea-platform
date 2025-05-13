@@ -278,7 +278,7 @@ Options:
     projects.forEach((project) => {
       try {
         const projectPath = path.resolve(workspaceBase, project);
-        const cmd = `npm publish --access public --registry http://localhost:4873`;
+        const cmd = `npm publish --registry http://localhost/verdaccio/ --access=public`;
   
         execSync(cmd, { cwd: projectPath, stdio: 'inherit' });
         grunt.log.ok(`Published ${project}`);
