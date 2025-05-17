@@ -288,9 +288,13 @@ npm adduser --registry http://localhost/
 
 yarn install http://localhost:4873 // Verdaccio repo
 
+yarn install
+yarn lint
+yarn test
 
 yarn npm login --scope ix
 yarn remove @ix/laniakea-lib-core
+yarn constraints check
 
 
 TSCONFIG
@@ -344,5 +348,84 @@ tree -L 4 -I 'node_modules|app-platform|frontend|libs|microservices|template' .
     "@ix/laniakea-lib-database": ">=1.0.0-alpha.0 <2.0.0",
     "@ix/laniakea-lib-metrics": ">=1.0.0-alpha.0 <2.0.0",
     "@ix/laniakea-lib-sec-comm": ">=1.0.0-alpha.0 <2.0.0",
+
+
+
+    "microservices/*",
+    "!microservices/laniakea-engine-dhl",
+    "!microservices/laniakea-engine-notifier",
+    "!microservices/laniakea-job-logistics",
+    "!microservices/laniakea-mcs-auth",
+    "!microservices/laniakea-mcs-enterprise",
+    "!microservices/laniakea-mcs-frontend-manager",
+    "!microservices/laniakea-mcs-logistics",
+    "!microservices/laniakea-mcs-region"
+
+
+yarn add -D @nestjs/cli prettier eslint-plugin-prettier eslint-config-prettier
+rm -rf .yarn/cache yarn.lock node_modules
+
+
+./repo-local-clean.sh @ix/laniakea-lib-audit \
+  @ix/laniakea-lib-core \
+  @ix/laniakea-lib-central \
+  @ix/laniakea-lib-database \
+  @ix/laniakea-lib-metrics \
+  @ix/laniakea-lib-sec-comm
+
+yarn grunt local publish-local \
+  --workspace=libs \
+  --projects=laniakea-lib-core,laniakea-lib-audit \
+  --build-type=nest
+
+./yarn-add-range.sh "@ix/laniakea-lib-audit:>=1.0.0-alpha.0 <2.0.0,@ix/laniakea-lib-core:>=1.0.0-alpha.0 <2.0.0"
+
+
+yarn grunt local publish-local \
+  --workspace=libs \
+  --projects=laniakea-lib-central,laniakea-lib-database,laniakea-lib-metrics,laniakea-lib-sec-comm \
+  --build-type=nest
+
+./yarn-add-range.sh \
+"@ix/laniakea-lib-central:>=1.0.0-alpha.0 <2.0.0, \
+@ix/laniakea-lib-database:>=1.0.0-alpha.0 <2.0.0, \
+@ix/laniakea-lib-metrics:>=1.0.0-alpha.0 <2.0.0, \
+@ix/laniakea-lib-sec-comm:>=1.0.0-alpha.0 <2.0.0"
+
+
+
+./yarn-add-range.sh "@ix/laniakea-lib-central:>=1.0.0-alpha.0 <2.0.0,@ix/laniakea-lib-database:>=1.0.0-alpha.0 <2.0.0,@ix/laniakea-lib-metrics:>=1.0.0-alpha.0 <2.0.0,@ix/laniakea-lib-sec-comm:>=1.0.0-alpha.0 <2.0.0"
+
+lcp_local && npm run start:debug
+
+
+
+
+yarn grunt publish-local --workspace=libs --projects=laniakea-lib-a --build-type=nest
+
+
+
+
+
+
+
+  "workspaces": [
+    "libs/*",
+    "!libs/iot-lib-device",
+    "!libs/iot-lib-recycle",
+    "!libs/laniakea-lib-audit",
+    "!libs/laniakea-lib-commons",
+    "!libs/laniakea-lib-central",
+    "!libs/laniakea-lib-core",
+    "!libs/laniakea-lib-database",
+    "!libs/laniakea-lib-encode",
+    "!libs/laniakea-lib-enterprise",
+    "!libs/laniakea-lib-sec-comm",
+    "!libs/laniakea-lib-location",
+    "!libs/laniakea-lib-logistics",
+    "!libs/laniakea-lib-metrics",
+    "!libs/lib-vendor-atis"
+  ],
+
 
 -->

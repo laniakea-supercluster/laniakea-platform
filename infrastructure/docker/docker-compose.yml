@@ -51,7 +51,7 @@ services:
       - POSTGRES_PASSWORD=local
       - POSTGRES_DB=laniakea-test
     ports:
-      - "5432:5432"
+      - '5432:5432'
     deploy:
       restart_policy:
         condition: on-failure
@@ -69,18 +69,14 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=local
       - MONGO_INITDB_ROOT_PASSWORD=local
     ports:
-      - "27017:27017"
+      - '27017:27017'
     command: --quiet
     deploy:
       restart_policy:
         condition: on-failure
         max_attempts: 5
     healthcheck:
-      test:
-        [
-          "CMD-SHELL",
-          'mongosh --host localhost --quiet --eval "db.adminCommand(''ping'').ok"',
-        ]
+      test: ['CMD-SHELL', 'mongosh --host localhost --quiet --eval "db.adminCommand(''ping'').ok"']
       # test: ["CMD-SHELL", "mongosh --host localhost --quiet --eval \"db.adminCommand('ping').ok\" > /logs/healthcheck.log 2>&1"]
       interval: 60s
       start_period: 10s
@@ -94,8 +90,8 @@ services:
     image: rabbitmq:3-management
     container_name: laniakea-rabbitmq
     ports:
-      - "5672:5672" # AMQP port for RabbitMQ client communication
-      - "15672:15672" # Web management console port
+      - '5672:5672' # AMQP port for RabbitMQ client communication
+      - '15672:15672' # Web management console port
     environment:
       RABBITMQ_DEFAULT_USER: admin # Default username for the web console
       RABBITMQ_DEFAULT_PASS: admin # Default password for the web console
@@ -110,10 +106,9 @@ services:
     container_name: laniakea-redis
     environment:
       - REDIS_PASSWORD=q1w2e3R4t5
-    command:
-      ["redis-server", "--appendonly", "yes", "--requirepass", "q1w2e3R4t5"]
+    command: ['redis-server', '--appendonly', 'yes', '--requirepass', 'q1w2e3R4t5']
     ports:
-      - "6379:6379"
+      - '6379:6379'
     volumes:
       - redis-data:/data
 
@@ -128,7 +123,7 @@ services:
       - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
     ports:
-      - "9090:9090"
+      - '9090:9090'
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Observability
@@ -147,7 +142,7 @@ services:
       - GF_DATABASE_USER=grafana # PostgreSQL user for Grafana
       - GF_DATABASE_PASSWORD=grafana # PostgreSQL user password
     ports:
-      - "3000:3000"
+      - '3000:3000'
     depends_on:
       - laniakea-postgres # Wait until PostgreSQL is ready
     volumes:
@@ -188,7 +183,7 @@ services:
     #   - DATASTORE_PROJECT_ID=my-project-id
     #   - DATASTORE_USE_PROJECT_ID_AS_APP_ID=true
     ports:
-      - "8000:8081"
+      - '8000:8081'
     command: gcloud beta emulators datastore start --project=datastore-wrapper --host-port=0.0.0.0:8081 --project emulator --store-on-disk
     # --no-store-on-disk --use-firestore-in-datastore-mode
 
@@ -200,7 +195,7 @@ services:
     container_name: laniakea-reverse-proxy
     image: nginx:alpine
     ports:
-      - "31000:31000" # Map port 31000
+      - '31000:31000' # Map port 31000
     volumes:
       - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./reverse-proxy/error502.html:/usr/share/nginx/html/error502.html:ro # Mount the custom 502 error page
@@ -210,7 +205,7 @@ services:
         condition: on-failure
         max_attempts: 5
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      test: ['CMD', 'curl', '-f', 'http://localhost/health']
       interval: 60s
       start_period: 10s
       timeout: 5s
@@ -223,7 +218,7 @@ services:
     environment:
       - REDIS_1_HOST=laniakea-redis
     ports:
-      - "8080:80"
+      - '8080:80'
     depends_on:
       - laniakea-redis
 
@@ -232,7 +227,7 @@ services:
     image: verdaccio/verdaccio:5
     container_name: laniakea-verdaccio
     ports:
-      - "4873:4873"
+      - '4873:4873'
     # volumes:
     #   - /opt/local-storage/verdaccio/storage:/verdaccio/storage
     #   - /opt/local-storage/verdaccio/conf:/verdaccio/conf

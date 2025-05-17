@@ -13,9 +13,9 @@
         "node": true
       },
       "extends": [
-        "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-         "airbnb-base"
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:prettier/recommended"
       ],
     "globals": {
         "Atomics": "readonly",
@@ -27,7 +27,8 @@
         "sourceType": "module"
       },
     "plugins": [
-        "@typescript-eslint"
+      "@typescript-eslint",
+      "import"
     ],
     "rules": {
       "import/extensions": [
@@ -40,6 +41,16 @@
           "tsx": "never"
         }
       ],
+      // "prettier/prettier": [
+      //   "error",
+      //   {
+      //     "printWidth": 130,
+      //     "singleQuote": true,
+      //     "trailingComma": "all",
+      //     "bracketSpacing": true,
+      //     "arrowParens": "avoid"
+      //   }
+      // ],      
         // "object-curly-spacing": "off",
         // "comma-dangle": "off",
         // "max-len": [
@@ -211,7 +222,7 @@
         // "no-unmodified-loop-condition": "off",
         // "no-unneeded-ternary": "off",
         // "no-unused-expressions": "off",
-        // "no-unused-vars": "off"
+        "no-unused-vars": "off",
         // "no-use-before-define": "off",
         // "no-useless-call": "off",
         // "no-useless-computed-key": "off",
@@ -291,7 +302,7 @@
         "@typescript-eslint/no-empty-object-type": "off",
         // "@typescript-eslint/no-empty-function": "off",
         // "@typescript-eslint/no-empty-interface": "off",
-        "@typescript-eslint/no-explicit-any": "off"
+        "@typescript-eslint/no-explicit-any": "off",
         // "@typescript-eslint/no-extra-non-null-assertion": "off",
         // "@typescript-eslint/no-extra-semi": "off",
         // "@typescript-eslint/no-inferrable-types": "off",
@@ -301,7 +312,13 @@
         // "@typescript-eslint/no-non-null-assertion": "off",
         // "@typescript-eslint/no-this-alias": "off",
         // "@typescript-eslint/no-unnecessary-type-assertion": "off",
-        // "@typescript-eslint/no-unused-vars": "off",
+        "@typescript-eslint/no-unused-vars": [
+          "error",
+          {
+            "argsIgnorePattern": "^_",
+            "varsIgnorePattern": "^_"
+          }
+        ]
         // "@typescript-eslint/no-var-requires": "off",
         // "@typescript-eslint/prefer-as-const": "off",
         // "@typescript-eslint/prefer-namespace-keyword": "off",

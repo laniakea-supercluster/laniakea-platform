@@ -140,8 +140,13 @@ module.exports = function (grunt) {
       grunt.registerTask('eslintTask', () => {
         projects.forEach((project) => {
           const src = path.join(path.resolve(__dirname, workspace), project, 'src');
-          const cmd = `npx eslint "${src}/**/*.ts" --config ./.eslintrc.json`;
+          const eslintConfigPath = path.resolve(__dirname, '.eslintrc.json');
+          const cmd = `npx eslint "${src}/**/*.ts" --config ${eslintConfigPath} --resolve-plugins-relative-to ${__dirname}`;
+
+
           grunt.log.writeln(`Running ESLint for ${project}`);
+          grunt.log.writeln(`→ Using ESLint config: ${eslintConfigPath}`);
+
           try {
             execSync(cmd, { stdio: 'inherit' });
           } catch (err) {
@@ -274,19 +279,34 @@ Options:
 
   grunt.registerTask('publish-local', () => {
     const workspaceBase = path.resolve(__dirname, workspace);
-  
+    const rootPackageJsonPath = path.resolve(__dirname, 'package.json');
+    const rootPackageJson = JSON.parse(fs.readFileSync(rootPackageJsonPath, 'utf8'));
+
     projects.forEach((project) => {
+      const projectPath = path.resolve(workspaceBase, project);
+      const packageJsonPath = path.join(projectPath, 'package.json');
+
       try {
-        const projectPath = path.resolve(workspaceBase, project);
+        const { name } = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
+
         const cmd = `npm publish --registry http://localhost/verdaccio/ --access=public`;
-  
         execSync(cmd, { cwd: projectPath, stdio: 'inherit' });
-        grunt.log.ok(`Published ${project}`);
+        grunt.log.ok(`Published ${name}`);
+
+        // ✅ Adiciona ao package.json raiz com o range desejado
+        const range = '>=1.0.0-alpha.0 <2.0.0';
+        rootPackageJson.dependencies ??= {};
+        rootPackageJson.dependencies[name] = range;
+        grunt.log.ok(`Added ${name}: "${range}" to root package.json`);
       } catch (error) {
         grunt.log.error(`Failed to publish ${project}`, error);
       }
     });
-  });  
+
+    // ✅ Salva modificações no package.json da raiz
+    fs.writeFileSync(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 2) + '\n');
+  });
+ 
 
   grunt.registerTask('publish', () => {
     const workspaceBase = path.resolve(__dirname, workspace);
