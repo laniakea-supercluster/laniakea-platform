@@ -1,6 +1,7 @@
 {
   "private": true,
   "dependencies": {
+    "@grpc/grpc-js": "^1.13.3",
     "@ix/laniakea-lib-audit": ">=1.0.0-alpha.0 <2.0.0",
     "@ix/laniakea-lib-central": ">=1.0.0-alpha.0 <2.0.0",
     "@ix/laniakea-lib-core": ">=1.0.0-alpha.0 <2.0.0",
