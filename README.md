@@ -307,17 +307,6 @@ CI/CD: npx sort-tsconfig microservices/tsconfig.json
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 # Verdaccio
 No terminal do projeto onde está a lib:
 
@@ -339,72 +328,89 @@ tree -L 2 -I 'node_modules|dist|.git' .
 tree -L 4 -I 'node_modules|app-platform|frontend|libs|microservices|template' .
 
 
-
-
-
-    "@ix/laniakea-lib-audit": ">=1.0.0-alpha.0 <2.0.0",
-    "@ix/laniakea-lib-central": ">=1.0.0-alpha.0 <2.0.0",
-    "@ix/laniakea-lib-core": ">=1.0.0-alpha.0 <2.0.0",
-    "@ix/laniakea-lib-database": ">=1.0.0-alpha.0 <2.0.0",
-    "@ix/laniakea-lib-metrics": ">=1.0.0-alpha.0 <2.0.0",
-    "@ix/laniakea-lib-sec-comm": ">=1.0.0-alpha.0 <2.0.0",
-
-
-
-    "microservices/*",
-    "!microservices/laniakea-engine-dhl",
-    "!microservices/laniakea-engine-notifier",
-    "!microservices/laniakea-job-logistics",
-    "!microservices/laniakea-mcs-auth",
-    "!microservices/laniakea-mcs-enterprise",
-    "!microservices/laniakea-mcs-frontend-manager",
-    "!microservices/laniakea-mcs-logistics",
-    "!microservices/laniakea-mcs-region"
-
-
 yarn add -D @nestjs/cli prettier eslint-plugin-prettier eslint-config-prettier
+
+
+
+
+CLEAR MODULES AND YARN
 rm -rf .yarn/cache yarn.lock node_modules
 
+HOW TO CINTINUE TO WORK
+1. lcp_local in terminal
+2. Start verdaccion from scrach (Optional)
+  2.1 Remove all libs (Base and Backend)
+  repo-local-clean.sh (optional recreat verdaccio from scrach)
+  ./repo-local-clean.sh \
+    @ix/laniakea-lib-audit \
+    @ix/laniakea-lib-core \
+    @ix/laniakea-lib-encode \
+    @ix/laniakea-lib-commons \
+    @ix/laniakea-lib-central \
+    @ix/laniakea-lib-database \
+    @ix/laniakea-lib-enterprise \
+    @ix/laniakea-lib-logistics \
+    @ix/laniakea-lib-metrics \
+    @ix/laniakea-lib-sec-comm
 
-./repo-local-clean.sh @ix/laniakea-lib-audit \
-  @ix/laniakea-lib-core \
-  @ix/laniakea-lib-central \
-  @ix/laniakea-lib-database \
-  @ix/laniakea-lib-metrics \
-  @ix/laniakea-lib-sec-comm
+  2.2 Install backend base libs and adjust range
+  yarn grunt local publish-local \
+    --workspace=libs \
+    --projects=laniakea-lib-audit,laniakea-lib-core,laniakea-lib-encode \
+    --build-type=nest
+  ./yarn-add-range.sh \
+    "@ix/laniakea-lib-audit:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-core:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-encode:>=1.0.0-alpha.0 <2.0.0"
 
-yarn grunt local publish-local \
-  --workspace=libs \
-  --projects=laniakea-lib-core,laniakea-lib-audit \
-  --build-type=nest
+  2.3 Install backend core libs
+  yarn grunt local publish-local \
+    --workspace=libs \
+    --projects=laniakea-lib-commons,\
+laniakea-lib-central,\
+laniakea-lib-database,\
+laniakea-lib-metrics,\
+laniakea-lib-sec-comm \
+    --build-type=nest
 
-./yarn-add-range.sh "@ix/laniakea-lib-audit:>=1.0.0-alpha.0 <2.0.0,@ix/laniakea-lib-core:>=1.0.0-alpha.0 <2.0.0"
+  ./yarn-add-range.sh \
+    "@ix/laniakea-lib-commons:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-central:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-database:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-metrics:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-sec-comm:>=1.0.0-alpha.0 <2.0.0"
+
+  2.4 Install backend enterprise libs
+  yarn grunt local publish-local \
+    --workspace=libs \
+    --projects=laniakea-lib-enterprise \
+    --build-type=nest
+
+  ./yarn-add-range.sh "@ix/laniakea-lib-enterprise:>=1.0.0-alpha.0 <2.0.0"
+
+  2.5 Install backend business libs
+  yarn grunt local publish-local \
+    --workspace=libs \
+    --projects=laniakea-lib-logistics \
+    --build-type=nest
+
+  ./yarn-add-range.sh "@ix/laniakea-lib-logistics:>=1.0.0-alpha.0 <2.0.0"
+
+  3.1 Standalone install (optional)
+  yarn grunt eslintTask \
+    --workspace=libs \
+    --projects=laniakea-lib-encode \
+    --build-type=nest
+
+  yarn grunt local publish-local \
+    --workspace=libs \
+    --projects=laniakea-lib-encode \
+    --build-type=nest
+  ./yarn-add-range.sh "@ix/laniakea-lib-metrics:>=1.0.0-alpha.0 <2.0.0"
 
 
-yarn grunt local publish-local \
-  --workspace=libs \
-  --projects=laniakea-lib-central,laniakea-lib-database,laniakea-lib-metrics,laniakea-lib-sec-comm \
-  --build-type=nest
-
-./yarn-add-range.sh \
-"@ix/laniakea-lib-central:>=1.0.0-alpha.0 <2.0.0, \
-@ix/laniakea-lib-database:>=1.0.0-alpha.0 <2.0.0, \
-@ix/laniakea-lib-metrics:>=1.0.0-alpha.0 <2.0.0, \
-@ix/laniakea-lib-sec-comm:>=1.0.0-alpha.0 <2.0.0"
-
-
-
-./yarn-add-range.sh "@ix/laniakea-lib-central:>=1.0.0-alpha.0 <2.0.0,@ix/laniakea-lib-database:>=1.0.0-alpha.0 <2.0.0,@ix/laniakea-lib-metrics:>=1.0.0-alpha.0 <2.0.0,@ix/laniakea-lib-sec-comm:>=1.0.0-alpha.0 <2.0.0"
-
-lcp_local && npm run start:debug
-
-
-
-
-yarn grunt publish-local --workspace=libs --projects=laniakea-lib-a --build-type=nest
-
-
-
+TO RUN APP
+2. lcp_local && npm run start:debug
 
 
 
@@ -427,5 +433,9 @@ yarn grunt publish-local --workspace=libs --projects=laniakea-lib-a --build-type
     "!libs/lib-vendor-atis"
   ],
 
+  yarn grunt eslintTask \
+    --workspace=libs \
+    --projects=laniakea-lib-commons \
+    --build-type=nest
 
 -->
