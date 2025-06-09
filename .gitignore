@@ -8,6 +8,9 @@ libs.code-workspace
 app/
 documentation/
 frontend/
+infrastructure/docker/verdaccio/storage
+infrastructure/docker/verdaccio/storage/*
+infrastructure/docker/verdaccio/._storage
 laniakea/
 libs/
 microservices/
@@ -19,3 +22,16 @@ gitops/
 .nx/installation
 .nx/cache
 .nx/workspace-data
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+**/*.tgz
+**/tsconfig.tsbuildinfo
+
+

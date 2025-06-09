@@ -1,84 +1,43 @@
 CHECK ALL PROCEEDS/RESOURCES THAT MUST BE INCLUDED FOR MICROSERVICES
 
 # laniakea-platform
+
 Laniakea platform is a conceptual project that likely revolves around providing a PaaS solution. Modular platform using various technologies like NestJS, TypeScript, Grunt, and potentially SCSS for front-end styling.
 
-
-
-
-
-### <span style="color:#0099FF; font-weight: bolder;">Kubernetes</span> 
+### <span style="color:#0099FF; font-weight: bolder;">Kubernetes</span>
 
 ## Namespaces
 
+### <span style="color:#0099FF; font-weight: bolder">Docker</span>
 
-
-
-
-
-
-
-
-
-
-
-### <span style="color:#0099FF; font-weight: bolder">Docker</span> 
 docker-compose build --no-cache <service-a> <service-b>
 docker-compose up -d --build servicea serviceb
 docker-compose up -d --build --no-cache servicea serviceb
 
 docker compose restart servicea
 
-
-
 docker-compose up -d --build laniakea-mcs-auth
 
+REMOVE \_files...
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-REMOVE _files...
-
-find . -name '._*' -delete
-
-
-
-
+find . -name '.\_\*' -delete
 
 <!---
-LOAD .env
-# LANIAKEA
-LANIAKEA_HOME=/Volumes/ssd/workspace/projects/atis/laniakea-supercluster/laniakea-platform
-lcp_local() {
-  export $(grep -v "^#" "$LANIAKEA_HOME/infrastructure/local.env" | xargs)
-}
-lcp_docker() {
-  export $(grep -v "^#" "$LANIAKEA_HOME/infrastructure/doker.env" | xargs)
-}
-export PATH=$PATH:$LANIAKEA_HOME
+SETUP ENVIRONMENT
+chmod +x setup-podman.sh
+./setup-podman.sh
+
+chmod +x setup-lania.sh
+./setup-lania.sh
+source ~/.zshrc
+
+
+[ -L ~/external-ssd ] && rm ~/external-ssd && echo "Symlink ~/external-ssd removed"
 
 -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 DOC
-npx compodoc -p tsconfig.json -s -w 
+npx compodoc -p tsconfig.json -s -w
 
 LOG
 https://levelup.gitconnected.com/error-handling-and-logging-in-nestjs-best-practices-ecc871ade7d7
@@ -115,7 +74,7 @@ https://patorjk.com/software/taag/#p=display&f=Graffiti&t=Type%20Something%20
 
 Docker
 docker network inspect bridge
-docker login registry.hub.docker.com 
+docker login registry.hub.docker.com
 
 
 docker compose -f docker-compose.yml up -d
@@ -189,7 +148,7 @@ BadgeMaker: Outra ferramenta útil para criar badges com suporte a várias integ
 SimpleIcons: Fornece ícones SVG para várias marcas populares, que você pode usar como parte de seus badges.
 
 Exemplo de como criar um badge customizado no Shields.io:
-Acesse o Shields.io. 
+Acesse o Shields.io.
 Escolha o estilo e o tipo de badge que deseja criar.
 Customize o texto, cor, ícone, e outros parâmetros.
 O site irá gerar a URL do badge, que você pode adicionar ao seu README.md usando Markdown ou HTML.
@@ -199,11 +158,9 @@ https://shields.io/
 https://badgen.net/
 https://simpleicons.org/
 
---->                                                                               
+--->
 
-
-
-<!-- 
+<!--
 LIBS
 npx eslint .
 npx grunt clean
@@ -238,8 +195,7 @@ git credential-osxkeychain erase
 host=github.com
 -->
 
-
-<!-- 
+<!--
 LIBS CONT...
 
 npx eslint .
@@ -267,9 +223,9 @@ npm unpublish @atisiothings/lib-core-domain@0.0.6 --force
 
 // https://pt.stackoverflow.com/questions/22431/express%C3%A3o-regular-para-rg
 
-# GIT 
+# GIT
 git remote add origin // git init
-git remote set-url origin 
+git remote set-url origin
 git merge origin/develop --allow-unrelated-histories
 git credential-osxkeychain erase
 host=github.com
@@ -279,13 +235,13 @@ git config --global http.postBuffer 157286400
 
 
 # DEV - GRUNT
-npx grunt clean --projects=laniakea-lib-database,laniakea-lib-central  
+npx grunt clean --projects=laniakea-lib-database,laniakea-lib-central
 
 npx grunt --projects=laniakea-lib-central --build-type=ts
 npx grunt deploy --projects=laniakea-lib-central --build-type=ts
 
 npx grunt --projects=laniakea-lib-database --build-type=nest
-npx grunt deploy --projects=laniakea-lib-database --build-type=nest
+npx grunt package --projects=laniakea-lib-database --build-type=nest
 npx grunt --projects=laniakea-lib-database,laniakea-lib-http --build-type=nest
 
 #CHECK Deps
@@ -301,15 +257,190 @@ IoT
 PCB: https://www.pcb-hero.com/?utm_source=kitty&utm_medium=Linkedin&utm_campaign=post20241011152216&utm_content=native_video
 
 
-Podman
-podman --version
 
-podman machine stop <machine-name>
-podman machine start <machine-name>
-podman machine set --rootful podman-machine-k8s
-podman machine set --volume /Volumes:/Volumes <machine-name>
 
-podman machine list
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+I MPORTANT
+# Yarn migration
+
+>> Para nvm, node, npm, yarn (.zshrc)
+# Config Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # Carrega o nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # Autocompletar opcional
+nvm use 22.14.0 > /dev/null
+corepack enable
+corepack prepare yarn@stable --activate
+
+
+### Local Development
+rm -rf node_modules .yarn/cache yarn.lock
+yarn grunt --workspace=libs --projects=laniakea-lib-core --build-type=ts (default)
+ yarn grunt local --workspace=libs --projects=laniakea-lib-metrics --build-type=nest
+
+>> to publish must be logged
+
+VERDACCIO
+npm login --registry http://localhost
+npm adduser --registry http://localhost/
+
+yarn install http://localhost:4873 // Verdaccio repo
+
+yarn install
+yarn lint
+yarn test
+
+yarn npm login --scope ix
+yarn remove @ix/laniakea-lib-core
+yarn constraints check
+
+
+TSCONFIG
+npx sort-tsconfig
+npx sort-tsconfig microservices/tsconfig.json -w
+CI/CD: npx sort-tsconfig microservices/tsconfig.json
+
+
+
+
+
+
+# Verdaccio
+No terminal do projeto onde está a lib:
+
+npm adduser --registry http://localhost:4873
+Insira:
+  Username: por ex. devuser
+  Password: senha
+  Email: qualquer
+
+Depois publique:
+  npm publish --registry http://localhost:4873
+
+
+
+
+
+# Useful commends
+tree -L 2 -I 'node_modules|dist|.git' .
+tree -L 4 -I 'node_modules|app-platform|frontend|libs|microservices|template' .
+
+
+yarn add -D @nestjs/cli prettier eslint-plugin-prettier eslint-config-prettier
+
+
+
+
+
+HOW TO CINTINUE TO WORK
+1. lcp_local in terminal
+  1.1 docker compose # subir infra
+2. Start verdaccion from scrach (Optional)
+  2.1 Remove all libs (Base and Backend)
+repo-local-clean.sh (optional recreat verdaccio from scrach)
+./repo-local-clean.sh \
+  @ix/laniakea-lib-audit \
+  @ix/laniakea-lib-core \
+  @ix/laniakea-lib-encode \
+  @ix/laniakea-lib-commons \
+  @ix/laniakea-lib-central \
+  @ix/laniakea-lib-database \
+  @ix/laniakea-lib-enterprise \
+  @ix/laniakea-lib-logistics \
+  @ix/laniakea-lib-metrics \
+  @ix/laniakea-lib-sec-comm && yarn install
+
+  OPTIONAL
+  CLEAR MODULES AND YARN - FIRST HAS TO REMOVE FROM package.json
+  rm -rf .yarn/cache yarn.lock node_modules
+
+
+  2.2 Install backend base libs and adjust range
+  yarn grunt local publish-local \
+    --workspace=libs \
+    --projects=laniakea-lib-audit,laniakea-lib-core,laniakea-lib-encode \
+    --build-type=nest
+  ./yarn-add-range.sh \
+    "@ix/laniakea-lib-audit:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-core:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-encode:>=1.0.0-alpha.0 <2.0.0"
+
+  2.3 Install backend core libs
+  yarn grunt local publish-local \
+    --workspace=libs \
+    --projects=laniakea-lib-commons,\
+laniakea-lib-central,\
+laniakea-lib-database,\
+laniakea-lib-metrics,\
+laniakea-lib-sec-comm \
+    --build-type=nest
+
+  ./yarn-add-range.sh \
+    "@ix/laniakea-lib-commons:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-central:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-database:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-metrics:>=1.0.0-alpha.0 <2.0.0," \
+    "@ix/laniakea-lib-sec-comm:>=1.0.0-alpha.0 <2.0.0"
+
+  2.4 Install backend enterprise libs
+  yarn grunt local publish-local \
+    --workspace=libs \
+    --projects=laniakea-lib-enterprise \
+    --build-type=nest
+
+  ./yarn-add-range.sh "@ix/laniakea-lib-enterprise:>=1.0.0-alpha.0 <2.0.0"
+
+  2.5 Install backend business libs
+  yarn grunt local publish-local \
+    --workspace=libs \
+    --projects=laniakea-lib-logistics \
+    --build-type=nest
+
+  ./yarn-add-range.sh "@ix/laniakea-lib-logistics:>=1.0.0-alpha.0 <2.0.0"
+
+  3.1 Standalone install (optional)
+  yarn grunt eslintTask \
+    --workspace=libs \
+    --projects=laniakea-lib-encode \
+    --build-type=nest
+
+  yarn grunt local publish-local \
+    --workspace=libs \
+    --projects=laniakea-lib-encode \
+    --build-type=nest
+  ./yarn-add-range.sh "@ix/laniakea-lib-metrics:>=1.0.0-alpha.0 <2.0.0"
+
+
+TO RUN APP
+2. lcp_local && npm run start:debug
+
+
+
+
+  "workspaces": [
+    "libs/*",
+    "!libs/iot-lib-device",
+    "!libs/iot-lib-recycle",
+    "!libs/laniakea-lib-audit",
+    "!libs/laniakea-lib-commons",
+    "!libs/laniakea-lib-central",
+    "!libs/laniakea-lib-core",
+    "!libs/laniakea-lib-database",
+    "!libs/laniakea-lib-encode",
+    "!libs/laniakea-lib-enterprise",
+    "!libs/laniakea-lib-sec-comm",
+    "!libs/laniakea-lib-location",
+    "!libs/laniakea-lib-logistics",
+    "!libs/laniakea-lib-metrics",
+    "!libs/lib-vendor-atis"
+  ],
+
+  yarn grunt eslintTask \
+    --workspace=libs \
+    --projects=laniakea-lib-commons \
+    --build-type=nest
 
 
 

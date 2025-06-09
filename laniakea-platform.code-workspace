@@ -2,6 +2,12 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../laniakea-fluxcd-gitops"
+		},
+		{
+			"path": "../../../ferreiraad/free-tier-gke"
 		}
 	],
 	"settings": {

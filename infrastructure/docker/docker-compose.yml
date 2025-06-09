@@ -2,39 +2,39 @@ services:
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Laniakea Microservices
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  laniakea-mcs-auth:
-    container_name: laniakea-mcs-auth
-    build:
-      context: ../../microservices/laniakea-mcs-auth
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    environment:
-      - port=3000
-    env_file:
-      - ../docker.env
-    depends_on:
-      reverse-proxy:
-        condition: service_healthy
-      laniakea-mongodb:
-        condition: service_healthy
+  # laniakea-mcs-auth:
+  #   container_name: laniakea-mcs-auth
+  #   build:
+  #     context: ../../microservices/laniakea-mcs-auth
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     - port=3000
+  #   env_file:
+  #     - ../docker.env
+  #   depends_on:
+  #     reverse-proxy:
+  #       condition: service_healthy
+  #     laniakea-mongodb:
+  #       condition: service_healthy
 
-  laniakea-mcs-logistics:
-    container_name: laniakea-mcs-logistics
-    build:
-      context: ../../microservices/laniakea-mcs-logistics
-      dockerfile: Dockerfile
-    ports:
-      - "3900:3900"
-    environment:
-      - PORT=3900
-    env_file:
-      - ../docker.env
-    depends_on:
-      reverse-proxy:
-        condition: service_healthy
-      laniakea-mongodb:
-        condition: service_healthy
+  # laniakea-mcs-logistics:
+  #   container_name: laniakea-mcs-logistics
+  #   build:
+  #     context: ../../microservices/laniakea-mcs-logistics
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3900:3900"
+  #   environment:
+  #     - PORT=3900
+  #   env_file:
+  #     - ../docker.env
+  #   depends_on:
+  #     reverse-proxy:
+  #       condition: service_healthy
+  #     laniakea-mongodb:
+  #       condition: service_healthy
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Databases
@@ -45,43 +45,43 @@ services:
     image: postgres:14.13-alpine3.20
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./database/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      # - ./database/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     environment:
       - POSTGRES_USER=local
       - POSTGRES_PASSWORD=local
       - POSTGRES_DB=laniakea-test
     ports:
-      - "5432:5432"
+      - '5432:5432'
     deploy:
       restart_policy:
         condition: on-failure
         max_attempts: 5
-  
-  # MongoDB
-  laniakea-mongodb:
-    container_name: laniakea-mongodb
-    image: mongo:7.0.12
-    volumes:
-      - mongo-data:/data/db
-      - ./database/mongodb/init.js:/docker-entrypoint-initdb.d/init-mongo-db-with-collections.js:ro
-      # - ./logs:/logs  # Mount logs folder to the host for easy access
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=local
-      - MONGO_INITDB_ROOT_PASSWORD=local
-    ports:
-      - "27017:27017"
-    command: --quiet
-    deploy:
-      restart_policy:
-        condition: on-failure
-        max_attempts: 5
-    healthcheck:
-      test: ["CMD-SHELL", "mongosh --host localhost --quiet --eval \"db.adminCommand('ping').ok\""]
-      # test: ["CMD-SHELL", "mongosh --host localhost --quiet --eval \"db.adminCommand('ping').ok\" > /logs/healthcheck.log 2>&1"]
-      interval: 60s
-      start_period: 10s
-      timeout: 5s
-      retries: 5
+
+  # # MongoDB
+  # laniakea-mongodb:
+  #   container_name: laniakea-mongodb
+  #   image: mongo:7.0.12
+  #   volumes:
+  #     - mongo-data:/data/db
+  #     # - ./database/mongodb/init.js:/docker-entrypoint-initdb.d/init-mongo-db-with-collections.js:ro
+  #     # - ./logs:/logs  # Mount logs folder to the host for easy access
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=local
+  #     - MONGO_INITDB_ROOT_PASSWORD=local
+  #   ports:
+  #     - '27017:27017'
+  #   command: --quiet
+  #   deploy:
+  #     restart_policy:
+  #       condition: on-failure
+  #       max_attempts: 5
+  #   healthcheck:
+  #     test: ['CMD-SHELL', 'mongosh --host localhost --quiet --eval "db.adminCommand(''ping'').ok"']
+  #     # test: ["CMD-SHELL", "mongosh --host localhost --quiet --eval \"db.adminCommand('ping').ok\" > /logs/healthcheck.log 2>&1"]
+  #     interval: 60s
+  #     start_period: 10s
+  #     timeout: 5s
+  #     retries: 5
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Queue
@@ -90,13 +90,13 @@ services:
     image: rabbitmq:3-management
     container_name: laniakea-rabbitmq
     ports:
-      - "5672:5672"     # AMQP port for RabbitMQ client communication
-      - "15672:15672"   # Web management console port
+      - '5672:5672' # AMQP port for RabbitMQ client communication
+      - '15672:15672' # Web management console port
     environment:
-      RABBITMQ_DEFAULT_USER: admin    # Default username for the web console
-      RABBITMQ_DEFAULT_PASS: admin    # Default password for the web console
+      RABBITMQ_DEFAULT_USER: admin # Default username for the web console
+      RABBITMQ_DEFAULT_PASS: admin # Default password for the web console
     volumes:
-      - rabbitmq-data:/var/lib/rabbitmq   # Persistent storage for RabbitMQ data
+      - rabbitmq-data:/var/lib/rabbitmq # Persistent storage for RabbitMQ data
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Cache
@@ -106,9 +106,9 @@ services:
     container_name: laniakea-redis
     environment:
       - REDIS_PASSWORD=q1w2e3R4t5
-    command: ["redis-server", "--appendonly", "yes", "--requirepass", "q1w2e3R4t5"]
+    command: ['redis-server', '--appendonly', 'yes', '--requirepass', 'q1w2e3R4t5']
     ports:
-      - "6379:6379"
+      - '6379:6379'
     volumes:
       - redis-data:/data
 
@@ -120,34 +120,34 @@ services:
     image: prom/prometheus:latest
     container_name: laniakea-prometheus
     volumes:
-      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      # - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
     ports:
-      - "9090:9090"
+      - '9090:9090'
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Observability
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-  laniakea-grafana:
-      image: grafana/grafana-oss:latest
-      container_name: laniakea-grafana
-      environment:
-        - GF_SECURITY_ADMIN_USER=admin
-        - GF_SECURITY_ADMIN_PASSWORD=admin
-        - GF_USERS_ALLOW_SIGN_UP=false
-        - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/
-        - GF_DATABASE_TYPE=postgres           # Set the database type to PostgreSQL
-        - GF_DATABASE_HOST=postgres:5432      # PostgreSQL server host and port
-        - GF_DATABASE_NAME=grafana            # Database name
-        - GF_DATABASE_USER=grafana            # PostgreSQL user for Grafana
-        - GF_DATABASE_PASSWORD=grafana        # PostgreSQL user password
-      ports:
-        - "3000:3000"
-      depends_on:
-        - laniakea-postgres                   # Wait until PostgreSQL is ready
-      volumes:
-        - grafana-data:/var/lib/grafana
-        - .,/observability/grafana/grafana.ini:/etc/grafana/grafana.ini:ro # Use a custom configuration file
+  # laniakea-grafana:
+  #   image: grafana/grafana-oss:latest
+  #   container_name: laniakea-grafana
+  #   environment:
+  #     - GF_SECURITY_ADMIN_USER=admin
+  #     - GF_SECURITY_ADMIN_PASSWORD=admin
+  #     - GF_USERS_ALLOW_SIGN_UP=false
+  #     - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s:%(http_port)s/grafana/
+  #     - GF_DATABASE_TYPE=postgres # Set the database type to PostgreSQL
+  #     - GF_DATABASE_HOST=postgres:5432 # PostgreSQL server host and port
+  #     - GF_DATABASE_NAME=grafana # Database name
+  #     - GF_DATABASE_USER=grafana # PostgreSQL user for Grafana
+  #     - GF_DATABASE_PASSWORD=grafana # PostgreSQL user password
+  #   ports:
+  #     - '3000:3000'
+  #   depends_on:
+  #     - laniakea-postgres # Wait until PostgreSQL is ready
+  #   volumes:
+  #     - grafana-data:/var/lib/grafana
+  #     - .,/observability/grafana/grafana.ini:/etc/grafana/grafana.ini:ro # Use a custom configuration file
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Laniakea Frontend
@@ -159,68 +159,79 @@ services:
   #     dockerfile: Dockerfile
   #   ports:
   #     - "80:80"
-    # environment:
-    #   - port=3000
-    # env_file:
-    #   - ../docker.env
-    # depends_on:
-    #   reverse-proxy:
-    #     condition: service_healthy
-    #   laniakea-mongodb:
-    #     condition: service_healthy
+  # environment:
+  #   - port=3000
+  # env_file:
+  #   - ../docker.env
+  # depends_on:
+  #   reverse-proxy:
+  #     condition: service_healthy
+  #   laniakea-mongodb:
+  #     condition: service_healthy
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Cloud Stacks
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Google Cloud - Datastore
-  laniakea-gcp-datastore:
-    image: gcr.io/google.com/cloudsdktool/cloud-sdk:392.0.0
-    # environment:
-    #   - DATASTORE_DATASET=my-project-id
-    #   - DATASTORE_EMULATOR_HOST=[::1]:8630
-    #   - DATASTORE_EMULATOR_HOST_PATH=[::1]:8630/datastore
-    #   - DATASTORE_HOST=http://[::1]:8630
-    #   - DATASTORE_PROJECT_ID=my-project-id
-    #   - DATASTORE_USE_PROJECT_ID_AS_APP_ID=true
-    ports:
-      - "8000:8081"
-    command: gcloud beta emulators datastore start --project=datastore-wrapper --host-port=0.0.0.0:8081 --project emulator --store-on-disk
-    # --no-store-on-disk --use-firestore-in-datastore-mode
+  # laniakea-gcp-datastore:
+  #   image: gcr.io/google.com/cloudsdktool/cloud-sdk:392.0.0
+  #   # environment:
+  #   #   - DATASTORE_DATASET=my-project-id
+  #   #   - DATASTORE_EMULATOR_HOST=[::1]:8630
+  #   #   - DATASTORE_EMULATOR_HOST_PATH=[::1]:8630/datastore
+  #   #   - DATASTORE_HOST=http://[::1]:8630
+  #   #   - DATASTORE_PROJECT_ID=my-project-id
+  #   #   - DATASTORE_USE_PROJECT_ID_AS_APP_ID=true
+  #   ports:
+  #     - '8000:8081'
+  #   command: gcloud beta emulators datastore start --project=datastore-wrapper --host-port=0.0.0.0:8081 --project emulator --store-on-disk
+  #   # --no-store-on-disk --use-firestore-in-datastore-mode
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # LOCAL DEVELOPMENT PURPOSE ONLY
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Nginx Reverse Proxy
-  reverse-proxy:
-    container_name: laniakea-reverse-proxy
-    image: nginx:alpine
-    ports:
-      - "31000:31000"  # Map port 31000
-    volumes:
-      - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./reverse-proxy/error502.html:/usr/share/nginx/html/error502.html:ro  # Mount the custom 502 error page
-      - ./reverse-proxy/error503.html:/usr/share/nginx/html/error503.html:ro  # Mount the custom 503 error page
-    deploy:
-      restart_policy:
-        condition: on-failure
-        max_attempts: 5
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/health"]
-      interval: 60s
-      start_period: 10s
-      timeout: 5s
-      retries: 3
+  # reverse-proxy:
+  #   container_name: laniakea-reverse-proxy
+  #   image: nginx:alpine
+  #   ports:
+  #     - '31000:31000' # Map port 31000
+  #   volumes:
+  #     - ./reverse-proxy/nginx.conf:/etc/nginx/nginx.conf:ro
+  #     - ./reverse-proxy/error502.html:/usr/share/nginx/html/error502.html:ro # Mount the custom 502 error page
+  #     - ./reverse-proxy/error503.html:/usr/share/nginx/html/error503.html:ro # Mount the custom 503 error page
+  #   deploy:
+  #     restart_policy:
+  #       condition: on-failure
+  #       max_attempts: 5
+  #   healthcheck:
+  #     test: ['CMD', 'curl', '-f', 'http://localhost/health']
+  #     interval: 60s
+  #     start_period: 10s
+  #     timeout: 5s
+  #     retries: 3
 
   # Redis Web Console
-  phpredisadmin:
-    image: erikdubbelboer/phpredisadmin
-    container_name: phpredisadmin
-    environment:
-      - REDIS_1_HOST=laniakea-redis
-    ports:
-      - "8080:80"
-    depends_on:
-      - laniakea-redis
+  # phpredisadmin:
+  #   image: erikdubbelboer/phpredisadmin
+  #   container_name: phpredisadmin
+  #   environment:
+  #     - REDIS_1_HOST=laniakea-redis
+  #   ports:
+  #     - '8080:80'
+  #   depends_on:
+  #     - laniakea-redis
+
+  # Verdaccio local artifacts repos - migrated to kubernetes
+  # verdaccio:
+  #   image: verdaccio/verdaccio:5
+  #   container_name: laniakea-verdaccio
+  #   ports:
+  #     - '4873:4873'
+  #   # volumes:
+  #   #   - /opt/local-storage/verdaccio/storage:/verdaccio/storage
+  #   #   - /opt/local-storage/verdaccio/conf:/verdaccio/conf
+  #   restart: unless-stopped
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # LOCAL DEVELOPMENT PURPOSE ONLY
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=

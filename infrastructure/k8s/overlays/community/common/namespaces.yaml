@@ -1,0 +1,35 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lcmy-backend
+  fullName: laniakea-cmy-backend
+  description: Namespace for backend microservices related to the Community Silo in the Laniakea platform.
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lcmy-infra
+  fullName: laniakea-cmy-infra
+  description: Namespace for infrastructure components (e.g., Redis, RabbitMQ, Secrets) in the Community Silo.
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lcmy-metrics
+  fullName: laniakea-cmy-metrics
+  description: Namespace for monitoring, metrics, and observability tools within the Community Silo.
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lcmy-databases
+  fullName: laniakea-cmy-databases
+  description: Namespace for managing databases like MongoDB and PostgreSQL used by the Community Silo.
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lcmy-apps
+  fullName: laniakea-cmy-apps
+  description: Namespace for frontend and client-facing applications in the Community Silo.
