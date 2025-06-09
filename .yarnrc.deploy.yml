@@ -1,0 +1,15 @@
+nodeLinker: node-modules
+
+npmRegistryServer: "http://host.docker.internal/verdaccio"
+enableStrictSsl: false
+
+npmScopes:
+  ix:
+    npmRegistryServer: "http://host.docker.internal/verdaccio"
+
+unsafeHttpWhitelist:
+  - "host.docker.internal"
+  - "localhost"
+  - "127.0.0.1"
+
+yarnPath: .yarn/releases/yarn-4.9.1.cjs

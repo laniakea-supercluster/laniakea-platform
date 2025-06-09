@@ -25,4 +25,3 @@ spec:
     requests:
       storage: 3Gi
   volumeName: verdaccio-storage-pv
-

@@ -215,4 +215,8 @@ Some kubernetes resources abbreviations:
 * services (aka 'svc')
 
 
+*** kubefwd
+https://github.com/txn2/kubefwd
+
+
 -->

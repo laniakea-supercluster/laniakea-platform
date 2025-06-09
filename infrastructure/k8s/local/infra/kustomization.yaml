@@ -7,9 +7,6 @@ labels:
       type: infra
 
 resources:
-  - verdaccio-configmap.yaml
-  - verdaccio-ingress.yaml
-  - verdaccio-pv.yaml
-  - verdaccio-stateful.yaml
-  - verdacio-service.yaml
+  - verdaccio
+  - mongodb
   

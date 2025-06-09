@@ -333,25 +333,29 @@ yarn add -D @nestjs/cli prettier eslint-plugin-prettier eslint-config-prettier
 
 
 
-CLEAR MODULES AND YARN
-rm -rf .yarn/cache yarn.lock node_modules
 
 HOW TO CINTINUE TO WORK
 1. lcp_local in terminal
+  1.1 docker compose # subir infra
 2. Start verdaccion from scrach (Optional)
   2.1 Remove all libs (Base and Backend)
-  repo-local-clean.sh (optional recreat verdaccio from scrach)
-  ./repo-local-clean.sh \
-    @ix/laniakea-lib-audit \
-    @ix/laniakea-lib-core \
-    @ix/laniakea-lib-encode \
-    @ix/laniakea-lib-commons \
-    @ix/laniakea-lib-central \
-    @ix/laniakea-lib-database \
-    @ix/laniakea-lib-enterprise \
-    @ix/laniakea-lib-logistics \
-    @ix/laniakea-lib-metrics \
-    @ix/laniakea-lib-sec-comm
+repo-local-clean.sh (optional recreat verdaccio from scrach)
+./repo-local-clean.sh \
+  @ix/laniakea-lib-audit \
+  @ix/laniakea-lib-core \
+  @ix/laniakea-lib-encode \
+  @ix/laniakea-lib-commons \
+  @ix/laniakea-lib-central \
+  @ix/laniakea-lib-database \
+  @ix/laniakea-lib-enterprise \
+  @ix/laniakea-lib-logistics \
+  @ix/laniakea-lib-metrics \
+  @ix/laniakea-lib-sec-comm && yarn install
+
+  OPTIONAL
+  CLEAR MODULES AND YARN - FIRST HAS TO REMOVE FROM package.json
+  rm -rf .yarn/cache yarn.lock node_modules
+
 
   2.2 Install backend base libs and adjust range
   yarn grunt local publish-local \
@@ -437,5 +441,9 @@ TO RUN APP
     --workspace=libs \
     --projects=laniakea-lib-commons \
     --build-type=nest
+
+
+
+
 
 -->

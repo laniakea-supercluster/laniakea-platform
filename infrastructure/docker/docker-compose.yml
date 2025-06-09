@@ -45,7 +45,7 @@ services:
     image: postgres:14.13-alpine3.20
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./database/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      # - ./database/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     environment:
       - POSTGRES_USER=local
       - POSTGRES_PASSWORD=local
@@ -57,31 +57,31 @@ services:
         condition: on-failure
         max_attempts: 5
 
-  # MongoDB
-  laniakea-mongodb:
-    container_name: laniakea-mongodb
-    image: mongo:7.0.12
-    volumes:
-      - mongo-data:/data/db
-      - ./database/mongodb/init.js:/docker-entrypoint-initdb.d/init-mongo-db-with-collections.js:ro
-      # - ./logs:/logs  # Mount logs folder to the host for easy access
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=local
-      - MONGO_INITDB_ROOT_PASSWORD=local
-    ports:
-      - '27017:27017'
-    command: --quiet
-    deploy:
-      restart_policy:
-        condition: on-failure
-        max_attempts: 5
-    healthcheck:
-      test: ['CMD-SHELL', 'mongosh --host localhost --quiet --eval "db.adminCommand(''ping'').ok"']
-      # test: ["CMD-SHELL", "mongosh --host localhost --quiet --eval \"db.adminCommand('ping').ok\" > /logs/healthcheck.log 2>&1"]
-      interval: 60s
-      start_period: 10s
-      timeout: 5s
-      retries: 5
+  # # MongoDB
+  # laniakea-mongodb:
+  #   container_name: laniakea-mongodb
+  #   image: mongo:7.0.12
+  #   volumes:
+  #     - mongo-data:/data/db
+  #     # - ./database/mongodb/init.js:/docker-entrypoint-initdb.d/init-mongo-db-with-collections.js:ro
+  #     # - ./logs:/logs  # Mount logs folder to the host for easy access
+  #   environment:
+  #     - MONGO_INITDB_ROOT_USERNAME=local
+  #     - MONGO_INITDB_ROOT_PASSWORD=local
+  #   ports:
+  #     - '27017:27017'
+  #   command: --quiet
+  #   deploy:
+  #     restart_policy:
+  #       condition: on-failure
+  #       max_attempts: 5
+  #   healthcheck:
+  #     test: ['CMD-SHELL', 'mongosh --host localhost --quiet --eval "db.adminCommand(''ping'').ok"']
+  #     # test: ["CMD-SHELL", "mongosh --host localhost --quiet --eval \"db.adminCommand('ping').ok\" > /logs/healthcheck.log 2>&1"]
+  #     interval: 60s
+  #     start_period: 10s
+  #     timeout: 5s
+  #     retries: 5
 
   #-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
   # Queue
@@ -120,7 +120,7 @@ services:
     image: prom/prometheus:latest
     container_name: laniakea-prometheus
     volumes:
-      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      # - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
     ports:
       - '9090:9090'
