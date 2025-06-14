@@ -21,7 +21,7 @@ spec:
           image: verdaccio/verdaccio:5
           env:
             - name: VERDACCIO_PUBLIC_URL
-              value: http://localhost/verdaccio
+              value: ""
             - name: VERDACCIO_PORT
               value: "4873"
           ports:
@@ -37,8 +37,8 @@ spec:
               memory: "128Mi"
               cpu: "100m"
             limits:
-              memory: "1024Mi"
-              cpu: "500m"
+              memory: "2048Mi"
+              cpu: "1000m"
           livenessProbe:
             httpGet:
               path: /-/ping
