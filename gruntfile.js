@@ -307,7 +307,6 @@ Options:
     fs.writeFileSync(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 2) + '\n');
   });
  
-
 grunt.registerTask('publish', () => {
   const workspaceBase = path.resolve(__dirname, workspace);
   const registryUrl = 'https://npm.pkg.github.com/';
