@@ -307,20 +307,65 @@ Options:
     fs.writeFileSync(rootPackageJsonPath, JSON.stringify(rootPackageJson, null, 2) + '\n');
   });
  
+grunt.registerTask('publish', () => {
+  const workspaceBase = path.resolve(__dirname, workspace);
+  const registryUrl = 'https://npm.pkg.github.com/';
 
-  grunt.registerTask('publish', () => {
-    const workspaceBase = path.resolve(__dirname, workspace);
-    projects.forEach((project) => {
-      try {
-        execSync(`yarn publish --cwd ${path.resolve(workspaceBase, project)} --non-interactive --access public --registry https://registry.npmjs.org/`, {
-          stdio: 'inherit',
-        });
-        grunt.log.ok(`Published ${project}`);
-      } catch (error) {
-        grunt.log.error(`Failed to publish ${project}`, error);
+  const getGitBranch = () => {
+    let branch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
+    if (branch === 'HEAD' && process.env.GITHUB_REF_NAME) {
+      branch = process.env.GITHUB_REF_NAME;
+    }
+    return branch;
+  };
+
+  const parseEnvFromBranch = (branch) => {
+    if (branch === 'master') return { tag: 'latest', suffix: '' };
+    if (branch.startsWith('qa')) return { tag: 'qa', suffix: 'qa' };
+    if (branch.startsWith('hotfix')) return { tag: 'qa', suffix: 'qa' };
+    if (branch.startsWith('dev')) return { tag: 'dev', suffix: 'dev' };
+    return { tag: 'custom', suffix: branch.replace(/\//g, '-') };
+  };
+
+  const branch = getGitBranch();
+  const { tag, suffix } = parseEnvFromBranch(branch);
+
+  projects.forEach((project) => {
+    const projectPath = path.resolve(workspaceBase, project);
+    const pkgPath = path.join(projectPath, 'package.json');
+    const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf8'));
+
+    const baseVersion = pkg.version.split('-')[0]; // "1.0.0"
+    let newVersion = baseVersion;
+
+    if (suffix) {
+      const match = pkg.version.match(/-(alpha|beta)-(\d+)/);
+      if (match) {
+        const [, stage, num] = match;
+        const next = parseInt(num, 10) + 1;
+        newVersion = `${baseVersion}-${stage}-${next}-${suffix}`;
+      } else {
+        newVersion = `${baseVersion}-${suffix}`;
       }
-    });
+
+      grunt.log.writeln(`📦 Applying version: ${newVersion}`);
+      execSync(`npm version ${newVersion} --no-git-tag-version`, {
+        cwd: projectPath,
+        stdio: 'inherit',
+      });
+    } else {
+      grunt.log.writeln(`📦 Using base version (no suffix): ${baseVersion}`);
+    }
+
+    try {
+      const cmd = `npm publish --registry ${registryUrl} --tag ${tag}`;
+      execSync(cmd, { cwd: projectPath, stdio: 'inherit' });
+      grunt.log.ok(`✅ Published ${project} as ${newVersion} with tag '${tag}'`);
+    } catch (error) {
+      grunt.log.error(`❌ Failed to publish ${project}`, error);
+    }
   });
+});
 
   grunt.registerTask('deploy', ['bumpVersion', 'generateDocs', 'publish', 'copy:protoFiles', 'copy:i18n']);
 };

@@ -297,6 +297,10 @@ kubectl delete helmrelease -n bsp support
 flux reconcile kustomization --with-source apps
 
 
+*** kubefwd
+https://github.com/txn2/kubefwd
+
+
 CHECK DEPLOY
 watch -n 5 "kubectl get po -n bsp --sort-by=.metadata.creationTimestamp | tail -n +2 | sort -r"
 watch -n 5 "kubectl get po -n bsp --sort-by=.metadata.creationTimestamp"
