@@ -358,12 +358,12 @@ Options:
       }
 
       try {
-        // if (!process.env.GH_NPM_TOKEN) {
-        //   throw new Error('GH_NPM_TOKEN is not set in the environment');
-        // }
+        if (!process.env.GH_NPM_TOKEN) {
+          throw new Error('GH_NPM_TOKEN is not set in the environment');
+        }
 
-        // process.env['NPM_CONFIG_//npm.pkg.github.com/:_authToken'] = process.env.GH_NPM_TOKEN;
-        // process.env['NPM_CONFIG_ALWAYS_AUTH'] = 'true';
+        process.env['NPM_CONFIG_//npm.pkg.github.com/:_authToken'] = process.env.GH_NPM_TOKEN;
+        process.env['NPM_CONFIG_ALWAYS_AUTH'] = 'true';
         const cmd = `npm publish --registry ${registryUrl} --tag ${tag}`;
         execSync(cmd, { cwd: projectPath, stdio: 'inherit' });
         grunt.log.ok(`✅ Published ${project} as ${newVersion} with tag '${tag}'`);
