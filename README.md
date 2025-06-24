@@ -54,6 +54,7 @@ GIT
 // display and sort Git branches by their last commit date
 git for-each-ref --sort=-committerdate refs/heads/ --format="%(committerdate:short) %(refname:short)"
 
+delete tags: git tag -l | xargs -n 1 git push origin --delete
 
 
 
@@ -443,7 +444,10 @@ TO RUN APP
     --build-type=nest
 
 
-
+ yarn grunt local \
+    --workspace=libs \
+    --projects=laniakea-lib-core \
+    --build-type=nest
 
 
 -->
